@@ -1,0 +1,189 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2015-09-29T12:54:02Z",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "node/471268919",
+      "properties": {
+        "@id": "node/471268919",
+        "amenity": "parking",
+        "capacity": "30",
+        "fee": "no",
+        "name": "Prom. Champlain",
+        "park_ride": "no",
+        "parking": "surface",
+        "supervised": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.9127134,
+          45.5082881
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/3755187215",
+      "properties": {
+        "@id": "node/3755187215",
+        "amenity": "parking",
+        "name": "P5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8309548,
+          45.4956012
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/26289422",
+      "properties": {
+        "@id": "way/26289422",
+        "amenity": "parking",
+        "name": "P8",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8246571,
+          45.5096981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/26289483",
+      "properties": {
+        "@id": "way/26289483",
+        "amenity": "parking",
+        "name": "P11",
+        "parking": "surface",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8639203,
+          45.5267237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/26289487",
+      "properties": {
+        "@id": "way/26289487",
+        "amenity": "parking",
+        "created_by": "Potlatch 0.10b",
+        "name": "P10",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8535906,
+          45.5186446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/26719610",
+      "properties": {
+        "@id": "way/26719610",
+        "amenity": "parking",
+        "fee": "yes",
+        "name": "P7",
+        "parking": "surface",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8459541,
+          45.4842914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/151174860",
+      "properties": {
+        "@id": "way/151174860",
+        "access": "yes",
+        "amenity": "parking",
+        "fee": "no",
+        "name": "P12",
+        "park_ride": "no",
+        "parking": "surface",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8997089,
+          45.537102
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/229840965",
+      "properties": {
+        "@id": "way/229840965",
+        "amenity": "parking",
+        "name": "P9",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8471758,
+          45.5202491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/345805735",
+      "properties": {
+        "@id": "way/345805735",
+        "amenity": "parking",
+        "name": "Park and Ride",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8076369,
+          45.5027062
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/358568429",
+      "properties": {
+        "@id": "way/358568429",
+        "amenity": "parking",
+        "name": "P13 Parking for Wolf Trail.",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.9100195,
+          45.5435302
+        ]
+      }
+    }
+  ]
+}

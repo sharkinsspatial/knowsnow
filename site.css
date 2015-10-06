@@ -1,0 +1,20 @@
+.map {
+  width:100%;
+  height:100%;
+  bottom:0;
+}
+.leaflet-control-container .leaflet-routing-container-hide {
+    display: none;
+}
+.route-popup .leaflet-popup-content-wrapper {
+  background:#2c3e50;
+  color:#fff;
+  border-radius: 4px;
+}
+.route-popup .leaflet-popup-tip {
+    background:#2c3e50;
+}
+.route-popup .leaflet-popup-close-button {
+    visibility: hidden
+}
+
