@@ -2,7 +2,9 @@ import React from 'react'
 import alt from '../alt'
 import AltContainer from 'alt/AltContainer'
 import ParkingLotStore from '../stores/ParkingLotStore'
-import CreateReport from './CreateReport'
+import ReportStore from '../stores/ReportStore'
+import RouteControls from './RouteControls'
+import CreateReportInputs from './CreateReportInputs.js'
 import ParkingLotActions from '../actions/ParkingLotActions'
 import ReportActions from '../actions/ReportActions'
 
@@ -14,10 +16,11 @@ class CreateReportContainer extends React.Component {
 
     render() {
         return (
-            <AltContainer store={ParkingLotStore}
+            <AltContainer stores={{ParkingLots: ParkingLotStore, Reports: ReportStore}}
                 actions={{ParkingLotActions: ParkingLotActions,
                     ReportActions: ReportActions}}>
-                <CreateReport/>
+                <RouteControls/>
+                <CreateReportInputs/>
             </AltContainer>
         )
     }

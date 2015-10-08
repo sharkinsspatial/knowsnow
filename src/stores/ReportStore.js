@@ -12,7 +12,7 @@ class ReportStore {
         this.bindAction(ReportActions.updateReports, this.onUpdateReports)
         this.bindAction(ReportActions.fetchingReports, this.onFetchingReports)
         this.bindAction(ReportActions.setActiveReport, this.onSetActiveReport)
-        this.bindAction(ReportActions.updateReportRoute, this.onUpdateReportRoute)
+        this.bindAction(ReportActions.createReportRoute, this.onCreateReportRoute)
         this.bindAction(ReportActions.createReport, this.onCreateReport)
         this.bindAction(ReportActions.updateReport, this.onUpdateReport)
 
@@ -25,10 +25,6 @@ class ReportStore {
         this.setState({loading: true})
     }
 
-    onUpdateReportRoute(route) {
-        this.reportRoute = route
-    }
-
     loadReports(reports) {
         let mostRecent = reports.reduce((accumulator, current) => {
             let moreRecent = moment(current.date).isAfter(accumulator.date) ?
@@ -38,6 +34,12 @@ class ReportStore {
             return moreRecent
         }, {id:0, date: moment('2010', 'YYYY')})
         return mostRecent
+    }
+
+    addReport(report) {
+        this.reports.set(report.id, report)
+        //State is immutable so we need a new array from concat here
+        this.setState({reports: this.state.reports.concat([report])})
     }
 
     onUpdateReports(response) {
@@ -57,14 +59,19 @@ class ReportStore {
         }
     }
 
+    onCreateReportRoute(route) {
+        this.setState({ createdReportRoute: route })
+    }
+
     onCreateReport(report) {
         //if (!this.getInstance().isLoading) {
-            this.getInstance().createReport(report)
+            this.setState({ createdReport: report })
+            this.getInstance().createReport()
         //}
     }
 
     onUpdateReport(response) {
-        let test = response.data
+        this.addReport(response.data)
     }
 
     getReports() {

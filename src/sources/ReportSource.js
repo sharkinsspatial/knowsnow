@@ -30,29 +30,27 @@ const ReportSource = {
         error: ReportActions.reportsFailed
     },
 
-    createReport: function(report) {
-        return {
-            remote(state) {
-                return new Promise(function (resolve, reject) {
-                    setTimeout(function () {
-                        // change this to `false` to see the error action being handled.
-                        if (true) {
-                            resolve({data:{}})
-                        } else {
-                            reject('Things have broken')
-                        }
-                    }, 1000)
-                })
-            },
+    createReport: {
+        remote(state) {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    // change this to `false` to see the error action being handled.
+                    if (true) {
+                        resolve({ data: state.createdReport })
+                    } else {
+                        reject('Things have broken')
+                    }
+                }, 1000)
+            })
+        },
 
-            shouldFetch() {
-                return true
-            },
+        shouldFetch() {
+            return true
+        },
 
-            loading: ReportActions.creatingReport.defer(),
-            success: ReportActions.updateReport,
-            error: ReportActions.createReportFailed
-        }
+        loading: ReportActions.creatingReport.defer(),
+        success: ReportActions.updateReport,
+        error: ReportActions.createReportFailed
     }
 }
 

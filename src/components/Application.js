@@ -7,9 +7,11 @@ import ReportListContainer from './ReportListContainer'
 import CreateReportContainer from './CreateReportContainer'
 import Col from 'react-bootstrap/lib/Col'
 import Row from 'react-bootstrap/lib/Row'
+import Panel from 'react-bootstrap/lib/Panel'
 import ReportMap from './ReportMap'
 import AltContainer from 'alt/AltContainer'
 import ReportActions from '../actions/ReportActions'
+
 
 class Application extends React.Component {
     componentDidMount() {
@@ -21,7 +23,9 @@ class Application extends React.Component {
             <div>
                 <Row>
                 <Col md={4}>
+                <Panel>
                     {this.props.children}
+                </Panel>
                 </Col>
                 <Col md={8}>
                     <AltContainer stores={{Reports: ReportStore,

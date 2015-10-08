@@ -105,7 +105,7 @@ class ReportMap extends React.Component {
         this.routeLineCoords.push(...this.lastRouteSegment)
         this.routeLine.setLatLngs(this.routeLineCoords)
         let geojson = this.routeLine.toGeoJSON()
-        this.props.updateReportRoute(geojson)
+        this.props.createReportRoute(geojson)
         this.routeLineCoords = []
         this.lastRouteSegment = []
     }

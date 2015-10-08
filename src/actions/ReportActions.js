@@ -4,7 +4,8 @@ class ReportActions {
     constructor() {
         this.generateActions('fetchingReports', 'updateReports', 'reportsFailed',
              'createReport', 'creatingReport', 'updateReport', 'createReportFailed',
-             'setActiveReport', 'updateReportRoute')
+             'setActiveReport',
+             'createReportRoute')
     }
 }
 
