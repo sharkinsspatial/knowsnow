@@ -66,13 +66,12 @@ class CreateReportInputs extends React.Component {
                 <DateTimeField dateTime={this.state.date}
                     defaultText='Please select a start time' mode='time'
                     onChange={this.handleStartTimeChange} inputFormat='h:mm'
-                    ref='startTime' format={storageFormat} dateTime={now}/>
+                    ref='startTime' format={storageFormat}/>
             </Input>
             <Input label='Finish Time'>
                 <DateTimeField dateTime={this.state.startTime}
                     defaultText='Please select a finish time' mode='time'
-                    inputFormat='h:mm' ref='endTime' format={storageFormat}
-                    dateTime={now}/>
+                    inputFormat='h:mm' ref='endTime' format={storageFormat}/>
             </Input>
             <Input type='textarea' label='Report' ref='narrative'
                 placeholder='Your report here' disabled={!route ? true : false}/>
