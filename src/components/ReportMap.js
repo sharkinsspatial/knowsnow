@@ -111,11 +111,18 @@ class ReportMap extends React.Component {
     }
 
     clearRoute () {
-        this.map.eachLayer((layer) => {
-            if (layer !== this.baseLayer) {
-                this.map.removeLayer(layer)
-            }
-        })
+        if (this.map.hasLayer(this.startMarker)) {
+            this.map.removeLayer(this.startMarker)
+        }
+        if (this.map.hasLayer(this.intermediateMarker)) {
+            this.map.removeLayer(this.intermediateMarker)
+        }
+        if (this.map.hasLayer(this.finalMarker)) {
+            this.map.removeLayer(this.finalMarker)
+        }
+        if (this.map.hasLayer(this.routeLine)) {
+            this.map.removeLayer(this.routeLine)
+        }
         this.routingControl.getPlan().setWaypoints([])
     }
 
@@ -144,6 +151,7 @@ class ReportMap extends React.Component {
 
     componentDidMount () {
         this.initializeMap()
+        this.props.setActiveReport()
     }
 
     render () {
