@@ -14,7 +14,7 @@ class ReportMap extends React.Component {
             'target="_blank">&copy; Mapbox &copy; OpenStreetMap</a>'
         let subdomains = ['a', 'b', 'c', 'd']
 
-        let baseLayer = L.tileLayer(
+        this.baseLayer = L.tileLayer(
             'https://{s}.tiles.mapbox.com/v4/{mapId}/{z}/{x}/{y}.png?' +
             'access_token={token}', {
                 attribution: attribution,
@@ -28,7 +28,7 @@ class ReportMap extends React.Component {
             center: [45.493, -75.865],
             zoom: 14
         })
-        baseLayer.addTo(this.map)
+        this.baseLayer.addTo(this.map)
         this.geojson = L.geoJson().addTo(this.map)
 
         this.routeLineStyle = { color: 'red', opacity: 0.5, weight: 5 }
@@ -110,6 +110,15 @@ class ReportMap extends React.Component {
         this.lastRouteSegment = []
     }
 
+    clearRoute () {
+        this.map.eachLayer((layer) => {
+            if (layer !== this.baseLayer) {
+                this.map.removeLayer(layer)
+            }
+        })
+        this.routingControl.getPlan().setWaypoints([])
+    }
+
     handleUndoLastSegment = () => {
         this.routingControl.getPlan().setWaypoints([])
         this.routeStart = this.lastRouteSegment[0]
@@ -161,7 +170,12 @@ class ReportMap extends React.Component {
                                         active.geometry.coordinates[0])
                 this.startRouting(latlng)
                 this.map.setView(latlng, 15)
-            }
+        }
+        if (this.props.Reports.createdReportRoute &&
+            !nextProps.Reports.createdReportRoute) {
+            console.log('This')
+            this.clearRoute()
+        }
     }
 
     addGeoJSON (features) {

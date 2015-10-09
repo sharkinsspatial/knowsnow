@@ -65,7 +65,7 @@ class ReportStore {
 
     onCreateReport(report) {
         //if (!this.getInstance().isLoading) {
-            this.setState({ createdReport: report })
+            this.setState({ createdReport: report, createdReportRoute: null})
             this.getInstance().createReport()
         //}
     }

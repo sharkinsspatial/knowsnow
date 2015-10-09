@@ -10,9 +10,15 @@ class CreateReportInputs extends React.Component {
         this.state = {skiType: props.skiType}
     }
 
+    static contextTypes= {
+        history: React.PropTypes.object,
+        location: React.PropTypes.object
+    }
+
     handleSubmit = (event) => {
         let report = this.serializeForm()
         this.props.ReportActions.createReport(report)
+        this.context.history.pushState(null, '/', null)
     }
 
     handleSkiTypeChange = (event) => {

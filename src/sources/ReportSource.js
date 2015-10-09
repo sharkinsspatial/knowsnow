@@ -40,7 +40,7 @@ const ReportSource = {
                     } else {
                         reject('Things have broken')
                     }
-                }, 1000)
+                }, 3000)
             })
         },
 
