@@ -169,9 +169,9 @@ class ReportMap extends React.Component {
             .activeParkingLot) {
                 this.clearRoutingState()
                 this.routeLayerGroup.clearLayers()
-                let active = nextProps.ParkingLots.activeParkingLot
-                let latlng = L.latLng(active.geometry.coordinates[1],
-                                        active.geometry.coordinates[0])
+                let latlng = L.GeoJSON.coordsToLatLng(
+                    nextProps.ParkingLots.activeParkingLot.geometry.coordinates,
+                    true)
                 this.startRouting(latlng)
                 this.map.setView(latlng, 15)
         }
