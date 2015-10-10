@@ -72,6 +72,7 @@ class ReportMap extends React.Component {
         })
         this.routingControl
             .addEventListener('routesfound', this.handleRoutesFound, this)
+            .addTo(this.map)
     }
 
     createMarker = (waypointIndex, waypoint, numberOfWaypoints) => {
@@ -103,14 +104,19 @@ class ReportMap extends React.Component {
         this.finalMarker =  new L.marker(this.lastRouteSegment[
                                          this.lastRouteSegment.length - 1],
                        {icon: this.finalizedIcon}).addTo(this.routeLayerGroup)
-        this.routingControl.getPlan().setWaypoints([])
         this.routeLineCoords.push(...this.lastRouteSegment)
         this.routeLine.setLatLngs(this.routeLineCoords)
         let geojson = this.routeLine.toGeoJSON()
         this.props.createReportRoute(geojson)
+        this.clearRoutingState()
+    }
+
+    clearRoutingState () {
+        //Clear routing state doesn't inclued the routeLine so that it stays
+        //displayed until we submit
+        this.routingControl.getPlan().setWaypoints([])
         this.routeLineCoords = []
         this.lastRouteSegment = []
-        this.routingControl.removeFrom(this.map)
         this.map.off('click', this.handleRoutingClick)
     }
 
@@ -139,7 +145,6 @@ class ReportMap extends React.Component {
 
     componentDidMount () {
         this.initializeMap()
-        //this.props.setActiveReport()
     }
 
     render () {
@@ -162,6 +167,8 @@ class ReportMap extends React.Component {
         }
         if (nextProps.ParkingLots.activeParkingLot !== this.props.ParkingLots
             .activeParkingLot) {
+                this.clearRoutingState()
+                this.routeLayerGroup.clearLayers()
                 let active = nextProps.ParkingLots.activeParkingLot
                 let latlng = L.latLng(active.geometry.coordinates[1],
                                         active.geometry.coordinates[0])
@@ -192,7 +199,6 @@ class ReportMap extends React.Component {
     }
 
     startRouting (latlng) {
-        this.routingControl.addTo(this.map)
         this.routeStart = latlng
         this.routeLineCoords = []
         this.lastRouteSegment = []
