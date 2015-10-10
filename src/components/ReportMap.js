@@ -29,7 +29,9 @@ class ReportMap extends React.Component {
             zoom: 14
         })
         this.baseLayer.addTo(this.map)
-        this.geojson = L.geoJson().addTo(this.map)
+        this.reportRoute = L.geoJson().addTo(this.map)
+        this.reportRouteLayerGroup = L.layerGroup().addTo(this.map)
+        this.routeLayerGroup = L.layerGroup().addTo(this.map)
 
         this.routeLineStyle = { color: 'red', opacity: 0.5, weight: 5 }
         this.startIcon = L.AwesomeMarkers.icon({
@@ -67,7 +69,7 @@ class ReportMap extends React.Component {
                 return line
             },
             createMarker: this.createMarker
-        }).addTo(this.map)
+        })
         this.routingControl
             .addEventListener('routesfound', this.handleRoutesFound, this)
     }
@@ -95,12 +97,12 @@ class ReportMap extends React.Component {
 
     handleRouteFinish = () => {
         if (this.intermediateMarker) {
-            this.map.removeLayer(this.intermediateMarker)
+            this.routeLayerGroup.removeLayer(this.intermediateMarker)
         }
 
         this.finalMarker =  new L.marker(this.lastRouteSegment[
                                          this.lastRouteSegment.length - 1],
-                               {icon: this.finalizedIcon}).addTo(this.map)
+                       {icon: this.finalizedIcon}).addTo(this.routeLayerGroup)
         this.routingControl.getPlan().setWaypoints([])
         this.routeLineCoords.push(...this.lastRouteSegment)
         this.routeLine.setLatLngs(this.routeLineCoords)
@@ -108,22 +110,8 @@ class ReportMap extends React.Component {
         this.props.createReportRoute(geojson)
         this.routeLineCoords = []
         this.lastRouteSegment = []
-    }
-
-    clearRoute () {
-        if (this.map.hasLayer(this.startMarker)) {
-            this.map.removeLayer(this.startMarker)
-        }
-        if (this.map.hasLayer(this.intermediateMarker)) {
-            this.map.removeLayer(this.intermediateMarker)
-        }
-        if (this.map.hasLayer(this.finalMarker)) {
-            this.map.removeLayer(this.finalMarker)
-        }
-        if (this.map.hasLayer(this.routeLine)) {
-            this.map.removeLayer(this.routeLine)
-        }
-        this.routingControl.getPlan().setWaypoints([])
+        this.routingControl.removeFrom(this.map)
+        this.map.off('click', this.handleRoutingClick)
     }
 
     handleUndoLastSegment = () => {
@@ -135,11 +123,11 @@ class ReportMap extends React.Component {
     handleRoutesFound = (event) => {
         let coords = event.routes[0].coordinates
         if (this.intermediateMarker) {
-            this.map.removeLayer(this.intermediateMarker)
+            this.routeLayerGroup.removeLayer(this.intermediateMarker)
         }
         if (this.routeLineCoords.length > 0) {
             this.intermediateMarker =  new L.marker(coords[0],
-                               {icon: this.intermediateIcon}).addTo(this.map)
+                    {icon: this.intermediateIcon}).addTo(this.routeLayerGroup)
         }
         //Using spread operator with push
         this.routeLineCoords.push(...this.lastRouteSegment)
@@ -151,7 +139,7 @@ class ReportMap extends React.Component {
 
     componentDidMount () {
         this.initializeMap()
-        this.props.setActiveReport()
+        //this.props.setActiveReport()
     }
 
     render () {
@@ -166,9 +154,10 @@ class ReportMap extends React.Component {
 
     componentWillReceiveProps (nextProps) {
         if (nextProps.Reports.activeReport !== this.props.Reports.activeReport) {
-            this.geojson.clearLayers()
+            this.reportRoute.clearLayers()
+            this.reportRouteLayerGroup.clearLayers()
             if (nextProps.Reports.activeReportRoute) {
-                this.addGeoJSON(nextProps.Reports.activeReportRoute)
+                this.addReportRoute(nextProps.Reports.activeReportRoute)
             }
         }
         if (nextProps.ParkingLots.activeParkingLot !== this.props.ParkingLots
@@ -181,33 +170,44 @@ class ReportMap extends React.Component {
         }
         if (this.props.Reports.createdReportRoute &&
             !nextProps.Reports.createdReportRoute) {
-            console.log('This')
-            this.clearRoute()
+                this.routeLayerGroup.clearLayers()
         }
     }
 
-    addGeoJSON (features) {
-        this.geojson.addData(features)
-        this.map.fitBounds(this.geojson.getBounds(), { padding: [5,5] })
+    addReportRoute (route) {
+        this.reportRoute.addData(route)
+        let startMarker = new L.marker(L.GeoJSON.coordsToLatLng(
+            route.geometry.coordinates[0], true), {icon: this.startIcon})
+                                       .addTo(this.reportRouteLayerGroup)
+        let endMarker = new L.marker(L.GeoJSON.coordsToLatLng(
+            route.geometry.coordinates[route.geometry.coordinates.length -1],
+                true), {icon: this.finalizedIcon})
+                    .addTo(this.reportRouteLayerGroup)
+
+        this.map.fitBounds(this.reportRoute.getBounds(), { padding: [5,5] })
+    }
+
+    handleRoutingClick = (event) => {
+        this.routingControl.setWaypoints([this.routeStart, event.latlng])
     }
 
     startRouting (latlng) {
+        this.routingControl.addTo(this.map)
         this.routeStart = latlng
         this.routeLineCoords = []
         this.lastRouteSegment = []
 
         this.routeLine = L.polyline([], { color: 'blue'})
-        this.routeLine.addTo(this.map)
+            .addTo(this.routeLayerGroup)
 
         if (this.startMarker) {
-            this.map.removeLayer(this.startMarker)
+            this.routeLayerGroup.removeLayer(this.startMarker)
         }
         this.startMarker = new L.marker(latlng, {icon: this.startIcon})
-        this.startMarker.bindPopup('First Marker').addTo(this.map).openPopup()
+        this.startMarker.bindPopup('First Marker')
+            .addTo(this.routeLayerGroup).openPopup()
 
-        this.map.on('click', (event) => {
-            this.routingControl.setWaypoints([this.routeStart, event.latlng])
-        })
+        this.map.on('click', this.handleRoutingClick)
     }
 }
 
