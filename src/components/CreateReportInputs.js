@@ -7,7 +7,9 @@ import moment from 'moment'
 class CreateReportInputs extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {skiType: props.skiType}
+        this.storageFormat = 'YYYY-DD-MM hh:mm:ss'
+        let now = moment().format(this.storageFormat)
+        this.state = {skiType: props.skiType, date: now}
     }
 
     static contextTypes= {
@@ -29,10 +31,6 @@ class CreateReportInputs extends React.Component {
         this.setState({ date: date })
     }
 
-    handleStartTimeChange = (time) => {
-        this.setState({startTime: time})
-    }
-
     serializeForm = () => {
         let literal = {}
         for (var key of Object.keys(this.refs)) {
@@ -45,12 +43,6 @@ class CreateReportInputs extends React.Component {
 
     render() {
         let route = this.props.Reports.createdReportRoute
-        var submitDisabled = true
-        if (route && this.state.date && this.state.startTime) {
-            submitDisabled = false
-        }
-        let storageFormat = 'YYYY-DD-MM hh:mm:ss'
-        let now = moment().format(storageFormat)
         return (
             <div>
             <Input type='select' label='Ski Type' ref='skiType'
@@ -66,23 +58,25 @@ class CreateReportInputs extends React.Component {
             <Input label='Ski Date'>
                 <DateTimeField defaultText='Please select the ski date'
                     onChange={this.handleDateChange} inputFormat='MM/DD/YYYY'
-                    ref='date' format={storageFormat} dateTime={now}/>
+                    ref='date' format={this.storageFormat}
+                    dateTime={this.state.date}/>
             </Input>
             <Input label='Start Time'>
                 <DateTimeField dateTime={this.state.date}
                     defaultText='Please select a start time' mode='time'
-                    onChange={this.handleStartTimeChange} inputFormat='h:mm'
-                    ref='startTime' format={storageFormat}/>
+                    onChange={this.handleDateChange} inputFormat='h:mm'
+                    ref='startTime' format={this.storageFormat}/>
             </Input>
             <Input label='Finish Time'>
-                <DateTimeField dateTime={this.state.startTime}
+                <DateTimeField dateTime={this.state.date}
                     defaultText='Please select a finish time' mode='time'
-                    inputFormat='h:mm' ref='endTime' format={storageFormat}/>
+                    inputFormat='h:mm' ref='endTime'
+                    format={this.storageFormat}/>
             </Input>
             <Input type='textarea' label='Report' ref='narrative'
                 placeholder='Your report here' disabled={!route ? true : false}/>
             <ButtonInput type='submit' value='Submit Report'
-                onClick={this.handleSubmit} disabled={submitDisabled}/>
+                onClick={this.handleSubmit} disabled={!route ? true : false}/>
             </div>
         )
     }
