@@ -37,6 +37,8 @@ class ReportStore {
     }
 
     addReport(report) {
+        let id = Math.floor(Math.random() * (1000 - 100)) + 100 
+        report.id = id
         this.reports.set(report.id, report)
         //State is immutable so we need a new array from concat here
         this.setState({reports: this.state.reports.concat([report]),

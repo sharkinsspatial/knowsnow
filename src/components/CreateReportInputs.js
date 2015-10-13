@@ -31,7 +31,6 @@ class CreateReportInputs extends React.Component {
             literal[key] = this.refs[key].getValue()
         }
         literal.route = this.props.Reports.createdReportRoute
-        literal.id = 22
         return literal
     }
 
