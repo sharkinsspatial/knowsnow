@@ -51,6 +51,7 @@ class ReportMap extends React.Component {
             markerColor: 'red'
         })
         this.initializeRoutingControl()
+        this.shouldPopup = false
     }
 
     initializeRoutingControl () {
@@ -77,19 +78,22 @@ class ReportMap extends React.Component {
 
     createMarker = (waypointIndex, waypoint, numberOfWaypoints) => {
         if (waypointIndex === 1) {
-            let marker = new L.marker(waypoint.latLng, {icon: this.lastIcon})
-            let popupButtons = React.renderToStaticMarkup(<RouteMarkerPopup/>)
-            let div = document.createElement('div')
-            div.innerHTML = popupButtons
-            marker.bindPopup(div, {minWidth: 115})
-            marker.on('add', (event) => {
-                event.target.openPopup()
-                document.querySelector('.map .undo')
-                    .onclick = this.handleUndoLastSegment
-                document.querySelector('.map .finish')
-                    .onclick = this.handleRouteFinish
-            })
-            return marker
+            this.tempMarker = new L.marker(waypoint.latLng, {icon: this.lastIcon})
+            if (this.shouldPopup) {
+                let popupButtons = React.renderToStaticMarkup(<RouteMarkerPopup/>)
+                let div = document.createElement('div')
+                div.innerHTML = popupButtons
+                this.tempMarker.bindPopup(div, {minWidth: 115})
+                this.tempMarker.on('add', (event) => {
+                    event.target.openPopup()
+                    document.querySelector('.map .undo')
+                        .onclick = this.handleUndoLastSegment
+                    document.querySelector('.map .finish')
+                        .onclick = this.handleRouteFinish
+                })
+                this.shouldPopup = false
+            }
+            return this.tempMarker
         }
         else {
             return false
@@ -127,18 +131,20 @@ class ReportMap extends React.Component {
     }
 
     handleRoutesFound = (event) => {
+        this.shouldPopup = true
         let coords = event.routes[0].coordinates
         if (this.intermediateMarker) {
             this.routeLayerGroup.removeLayer(this.intermediateMarker)
         }
-        if (this.routeLineCoords.length > 0) {
-            this.intermediateMarker =  new L.marker(coords[0],
-                    {icon: this.intermediateIcon}).addTo(this.routeLayerGroup)
-        }
+
         //Using spread operator with push
         this.routeLineCoords.push(...this.lastRouteSegment)
         this.routeLine.setLatLngs(this.routeLineCoords)
 
+        if (this.routeLine.getLatLngs().length > 0) {
+            this.intermediateMarker =  new L.marker(coords[0],
+                    {icon: this.intermediateIcon}).addTo(this.routeLayerGroup)
+        }
         this.routeStart = coords[coords.length -1]
         this.lastRouteSegment = coords
     }
