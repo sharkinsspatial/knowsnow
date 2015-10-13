@@ -27,13 +27,14 @@ describe('RouteControls', () => {
             let li = TestUtils.findRenderedDOMComponentWithTag(instance, 'li')
             TestUtils.Simulate.select(li)
             expect(ParkingLotActions.setActiveParkingLot.mock.calls.length)
-                .toEqual(1)
+                .toEqual(2)
     })
 
     it('Should render one list item when passed a single parking lot prop',
         () => {
             const tree = sd.shallowRender(React.createElement(RouteControls,
-                                                {ParkingLots: ParkingLots}))
+                                                {ParkingLots: ParkingLots,
+                                                ParkingLotActions: ParkingLotActions}))
             const vdom = tree.getRenderOutput()
             const input = vdom.props.children
             const dropDown = input.props.children.filter(dropDown => TestUtils
@@ -41,5 +42,17 @@ describe('RouteControls', () => {
             const menuItems = dropDown[0].props.children.filter(menuItem => TestUtils
                 .isElementOfType(menuItem, MenuItem))
             expect(menuItems.length).toEqual(1)
+    })
+
+    it('Should clear the active parking lot when the component is mounted',
+       () => {
+            const shallowRenderer = TestUtils.createRenderer()
+            shallowRenderer.render(React.createElement(RouteControls,
+                                                {ParkingLots: ParkingLots,
+                                        ParkingLotActions: ParkingLotActions}))
+            expect(ParkingLotActions.setActiveParkingLot.mock.calls.length)
+                .toEqual(1)
+            expect(ParkingLotActions.setActiveParkingLot.mock.calls[0])
+                   .toEqual({})
     })
 })
