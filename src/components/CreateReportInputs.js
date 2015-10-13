@@ -40,7 +40,7 @@ class CreateReportInputs extends React.Component {
         //then transition
         if (this.props.Reports.createdReportRoute &&
             !nextProps.Reports.createdReportRoute) {
-            this.props.history.goBack()
+            this.props.history.pushState(null, '/', null)
         }
     }
 

@@ -14,6 +14,10 @@ class RouteControls extends React.Component {
         this.props.ParkingLotActions.setActiveParkingLot(id)
     }
 
+    componentWillMount () {
+        this.props.ParkingLotActions.setActiveParkingLot()
+    }
+
     render() {
         var parkingLotItems = []
         if (this.props.ParkingLots.parkinglots) {
