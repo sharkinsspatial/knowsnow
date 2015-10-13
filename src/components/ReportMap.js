@@ -165,7 +165,8 @@ class ReportMap extends React.Component {
                 this.addReportRoute(nextProps.Reports.activeReportRoute)
             }
         }
-        if (nextProps.ParkingLots.activeParkingLot !== this.props.ParkingLots
+        if (nextProps.ParkingLots.activeParkingLot &&
+            nextProps.ParkingLots.activeParkingLot !== this.props.ParkingLots
             .activeParkingLot) {
                 this.clearRoutingState()
                 this.routeLayerGroup.clearLayers()
@@ -191,7 +192,7 @@ class ReportMap extends React.Component {
                 true), {icon: this.finalizedIcon})
                     .addTo(this.reportRouteLayerGroup)
 
-        this.map.fitBounds(this.reportRoute.getBounds(), { padding: [5,5] })
+        this.map.fitBounds(this.reportRoute.getBounds(), { padding: [10,10] })
     }
 
     handleRoutingClick = (event) => {
