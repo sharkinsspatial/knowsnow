@@ -39,7 +39,8 @@ class ReportStore {
     addReport(report) {
         this.reports.set(report.id, report)
         //State is immutable so we need a new array from concat here
-        this.setState({reports: this.state.reports.concat([report])})
+        this.setState({reports: this.state.reports.concat([report]),
+            createdReportRoute: null})
     }
 
     onUpdateReports(response) {
@@ -65,7 +66,7 @@ class ReportStore {
 
     onCreateReport(report) {
         //if (!this.getInstance().isLoading) {
-            this.setState({ createdReport: report, createdReportRoute: null})
+            this.setState({ createdReport: report })
             this.getInstance().createReport()
         //}
     }

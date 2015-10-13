@@ -12,15 +12,9 @@ class CreateReportInputs extends React.Component {
         this.state = {skiType: props.skiType, date: now}
     }
 
-    static contextTypes= {
-        history: React.PropTypes.object,
-        location: React.PropTypes.object
-    }
-
     handleSubmit = (event) => {
         let report = this.serializeForm()
         this.props.ReportActions.createReport(report)
-        this.context.history.pushState(null, '/', null)
     }
 
     handleSkiTypeChange = (event) => {
@@ -39,6 +33,15 @@ class CreateReportInputs extends React.Component {
         literal.route = this.props.Reports.createdReportRoute
         literal.id = 22
         return literal
+    }
+
+    componentWillReceiveProps (nextProps) {
+        //Keep the user on this route until the report is successfully returned
+        //then transition
+        if (this.props.Reports.createdReportRoute &&
+            !nextProps.Reports.createdReportRoute) {
+            this.props.history.goBack()
+        }
     }
 
     render() {

@@ -7,23 +7,25 @@ import RouteControls from './RouteControls'
 import CreateReportInputs from './CreateReportInputs.js'
 import ParkingLotActions from '../actions/ParkingLotActions'
 import ReportActions from '../actions/ReportActions'
+import {History} from 'react-router'
 
-class CreateReportContainer extends React.Component {
+var CreateReportContainer = React.createClass({
+    mixins: [History],
     componentDidMount() {
         ParkingLotStore.getParkingLots()
         ReportActions.setActiveReport()
-    }
-
+    },
     render() {
         return (
-            <AltContainer stores={{ParkingLots: ParkingLotStore, Reports: ReportStore}}
+            <AltContainer stores={{ParkingLots: ParkingLotStore,
+                Reports: ReportStore}}
                 actions={{ParkingLotActions: ParkingLotActions,
-                    ReportActions: ReportActions}}>
+                ReportActions: ReportActions}}>
                 <RouteControls/>
-                <CreateReportInputs/>
+                <CreateReportInputs history={this.context.history}/>
             </AltContainer>
         )
     }
-}
+})
 
 export default CreateReportContainer
