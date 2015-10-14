@@ -17,4 +17,6 @@
 .route-popup .leaflet-popup-close-button {
     visibility: hidden
 }
-
+.navbar-collapse {
+  overflow: hidden;
+}
