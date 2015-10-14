@@ -24,7 +24,7 @@ class Application extends React.Component {
     render() {
         return (
             <div>
-                <Navbar toggleNavKey={0}>
+                <Navbar brand='Know Snow' toggleNavKey={0}>
                 <Nav right eventKey={0}>
                     <LinkContainer to='/create'>
                         <NavItem eventKey={1}>Create Report</NavItem>

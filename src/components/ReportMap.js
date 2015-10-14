@@ -52,6 +52,7 @@ class ReportMap extends React.Component {
         })
         this.initializeRoutingControl()
         this.shouldPopup = false
+        this.routeDistance = 0
     }
 
     initializeRoutingControl () {
@@ -122,6 +123,8 @@ class ReportMap extends React.Component {
         this.routingControl.getPlan().setWaypoints([])
         this.routeLineCoords = []
         this.lastRouteSegment = []
+        this.routeDistance = 0
+        this.lastSegmentDistance = 0
         this.map.off('click', this.handleRoutingClick)
     }
 
@@ -129,6 +132,8 @@ class ReportMap extends React.Component {
         this.routingControl.getPlan().setWaypoints([])
         this.routeStart = this.lastRouteSegment[0]
         this.lastRouteSegment = []
+        this.routeDistance = this.routeDistance - this.lastSegmentDistance
+        this.props.setReportRouteDistance(this.routeDistance)
     }
 
     handleRoutesFound = (event) => {
@@ -148,6 +153,11 @@ class ReportMap extends React.Component {
         }
         this.routeStart = coords[coords.length -1]
         this.lastRouteSegment = coords
+        this.routeDistance = this.routeDistance + event.routes[0]
+                                                        .summary.totalDistance
+        this.lastSegmentDistance = event.routes[0].summary.totalDistance
+
+        this.props.setReportRouteDistance(this.routeDistance)
     }
 
     componentDidMount () {

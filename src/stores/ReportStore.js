@@ -15,6 +15,7 @@ class ReportStore {
         this.bindAction(ReportActions.createReportRoute, this.onCreateReportRoute)
         this.bindAction(ReportActions.createReport, this.onCreateReport)
         this.bindAction(ReportActions.updateReport, this.onUpdateReport)
+        this.bindAction(ReportActions.setReportRouteDistance, this.onSetDistance)
 
         this.exportPublicMethods({
             getReports: this.getReports
@@ -37,7 +38,7 @@ class ReportStore {
     }
 
     addReport(report) {
-        let id = Math.floor(Math.random() * (1000 - 100)) + 100 
+        let id = Math.floor(Math.random() * (1000 - 100)) + 100
         report.id = id
         this.reports.set(report.id, report)
         //State is immutable so we need a new array from concat here
@@ -60,6 +61,10 @@ class ReportStore {
         else {
             this.setState({ activeReport: null, activeReportRoute: null })
         }
+    }
+
+    onSetDistance(distance) {
+        this.setState({ reportRouteDistance: distance })
     }
 
     onCreateReportRoute(route) {

@@ -26,10 +26,6 @@ class ReportList extends React.Component {
             </Accordion>
         )
     }
-
-    componentWillUnmount() {
-        this.props.setActiveReport()
-    }
 }
 ReportList.defaultProps = {reports: []}
 export default ReportList

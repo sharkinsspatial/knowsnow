@@ -39,7 +39,9 @@ class CreateReportInputs extends React.Component {
         //then transition
         if (this.props.Reports.createdReportRoute &&
             !nextProps.Reports.createdReportRoute) {
-            this.props.history.pushState(null, '/', null)
+            setTimeout(() => {
+                this.props.history.pushState(null, '/', null)
+            }, 0)
         }
     }
 
