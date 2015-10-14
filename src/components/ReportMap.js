@@ -110,6 +110,7 @@ class ReportMap extends React.Component {
                        {icon: this.finalizedIcon}).addTo(this.routeLayerGroup)
         this.routeLineCoords.push(...this.lastRouteSegment)
         this.routeLine.setLatLngs(this.routeLineCoords)
+        this.map.fitBounds(this.routeLine.getBounds(), { padding: [5,5] })
         let geojson = this.routeLine.toGeoJSON()
         this.props.createReportRoute(geojson)
         this.clearRoutingState()
