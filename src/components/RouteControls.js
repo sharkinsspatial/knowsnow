@@ -14,6 +14,11 @@ class RouteControls extends React.Component {
         this.props.ParkingLotActions.setActiveParkingLot(id)
     }
 
+    handleRouteReset = () => {
+        this.props.ParkingLotActions.setActiveParkingLot()
+        this.props.ReportActions.setReportRouteDistance()
+    }
+
     componentWillUnmount() {
         this.props.ParkingLotActions.setActiveParkingLot()
         this.props.ReportActions.setReportRouteDistance()
@@ -41,7 +46,8 @@ class RouteControls extends React.Component {
                     id={'parkingSelect'}>
                     {parkingLotItems}
                 </DropdownButton>
-                <Button><Glyphicon glyph='refresh'/> Reset Route</Button>
+                <Button onClick={this.handleRouteReset}>
+                    <Glyphicon glyph='refresh'/> Start Again</Button>
                 <span>{distance + ' KM'}</span>
             </Input>
             </div>
