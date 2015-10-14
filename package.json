@@ -32,8 +32,8 @@
     "leaflet-routing-machine": "^2.4.0",
     "lrm-mapbox": "^1.0.2",
     "moment": "^2.10.6",
-    "react": "^0.14.0",
-    "react-bootstrap": "^0.27.1",
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.25.2",
     "react-bootstrap-datetimepicker": "0.0.20",
     "react-router": "^1.0.0-rc1"
   },
