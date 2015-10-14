@@ -182,16 +182,17 @@ class ReportMap extends React.Component {
                 this.addReportRoute(nextProps.Reports.activeReportRoute)
             }
         }
-        if (nextProps.ParkingLots.activeParkingLot &&
-            nextProps.ParkingLots.activeParkingLot !== this.props.ParkingLots
+        if (nextProps.ParkingLots.activeParkingLot !== this.props.ParkingLots
             .activeParkingLot) {
                 this.clearRoutingState()
                 this.routeLayerGroup.clearLayers()
-                let latlng = L.GeoJSON.coordsToLatLng(
-                    nextProps.ParkingLots.activeParkingLot.geometry.coordinates,
-                    true)
-                this.startRouting(latlng)
-                this.map.setView(latlng, 15)
+                if (nextProps.ParkingLots.activeParkingLot) {
+                    let latlng = L.GeoJSON.coordsToLatLng(
+                        nextProps.ParkingLots.activeParkingLot
+                            .geometry.coordinates, true)
+                    this.startRouting(latlng)
+                    this.map.setView(latlng, 15)
+                }
         }
         if (this.props.Reports.createdReportRoute &&
             !nextProps.Reports.createdReportRoute) {
