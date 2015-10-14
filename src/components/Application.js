@@ -1,5 +1,6 @@
 import alt from '../alt'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import {Router, Route, IndexRoute} from 'react-router'
 import ReportStore from '../stores/ReportStore'
 import ParkingLotStore from '../stores/ParkingLotStore'
@@ -39,7 +40,7 @@ class Application extends React.Component {
     }
 }
 
-React.render((
+ReactDOM.render((
     <Router>
         <Route path='/' component={Application}>
             <IndexRoute component={ReportListContainer}/>
