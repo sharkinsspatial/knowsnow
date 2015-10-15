@@ -9,7 +9,7 @@ class CreateReportInputs extends React.Component {
         super(props)
         this.storageFormat = 'YYYY-MM-DDTHH:mm:ss'
         let now = moment().format(this.storageFormat)
-        this.state = {skiType: props.skiType, date: now}
+        this.state = {skiType: props.skiType, date: now, narrative: false}
     }
 
     handleSubmit = (event) => {
@@ -23,6 +23,15 @@ class CreateReportInputs extends React.Component {
 
     handleDateChange = (date) => {
         this.setState({ date: date })
+    }
+
+    handleNarrativeChange = () => {
+        if (this.refs.narrative.getValue().length > 0) {
+            this.setState({ narrative: true })
+        }
+        else {
+            this.setState({ narrative: false })
+        }
     }
 
     serializeForm = () => {
@@ -47,6 +56,7 @@ class CreateReportInputs extends React.Component {
 
     render() {
         let route = this.props.Reports.createdReportRoute
+        let narrative = this.state.narrative
         return (
             <div>
             <Input type='select' label='Ski Type' ref='skiType'
@@ -78,9 +88,12 @@ class CreateReportInputs extends React.Component {
                     format={this.storageFormat}/>
             </Input>
             <Input type='textarea' label='Report' ref='narrative'
-                placeholder='Your report here' disabled={!route ? true : false}/>
+                placeholder='Your report here'
+                onChange={this.handleNarrativeChange}
+                disabled={!route ? true : false}/>
             <ButtonInput type='submit' value='Submit Report'
-                onClick={this.handleSubmit} disabled={!route ? true : false}/>
+                onClick={this.handleSubmit} disabled={!route || !narrative
+                    ? true : false}/>
             </div>
         )
     }
