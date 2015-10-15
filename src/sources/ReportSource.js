@@ -5,7 +5,7 @@ const ReportSource = {
     fetchReports: {
         remote(state) {
             var res
-            axios.get('/Reports.json').then(function (response) {
+            axios.get('http://localhost:3000/api/Reports').then(function (response) {
                 res = response
             })
             // Add delay for load animation testing
@@ -25,22 +25,27 @@ const ReportSource = {
             return state.reports ? state.reports : null
         },
 
-        loading: ReportActions.fetchingReports,
+        //loading: ReportActions.fetchingReports,
         success: ReportActions.updateReports,
         error: ReportActions.reportsFailed
     },
 
     createReport: {
         remote(state) {
+            var res
+            axios.post('http://localhost:3000/api/Reports', state.createdReport)
+                .then(function (response) {
+                    res = response
+            })
             return new Promise(function (resolve, reject) {
                 setTimeout(function () {
                     // change this to `false` to see the error action being handled.
                     if (true) {
-                        resolve({ data: state.createdReport })
+                        resolve(res)
                     } else {
                         reject('Things have broken')
                     }
-                }, 3000)
+                }, 2000)
             })
         },
 

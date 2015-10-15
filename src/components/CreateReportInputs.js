@@ -7,7 +7,7 @@ import moment from 'moment'
 class CreateReportInputs extends React.Component {
     constructor(props) {
         super(props)
-        this.storageFormat = 'YYYY-DD-MM hh:mm:ss'
+        this.storageFormat = 'YYYY-MM-DDTHH:mm:ss'
         let now = moment().format(this.storageFormat)
         this.state = {skiType: props.skiType, date: now}
     }
