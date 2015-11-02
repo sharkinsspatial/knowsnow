@@ -14,7 +14,8 @@ class ReportList extends React.Component {
             let dateDifference = moment(report.date).fromNow()
             return (
                 <Panel header={date + ' (' + dateDifference + ') by ' +
-                    report.userName} key={report.id} eventKey={report.id}>
+                    report.owner.identities[0].profile.displayName}
+                    key={report.id} eventKey={report.id}>
                     {report.narrative}
                 </Panel>
             )

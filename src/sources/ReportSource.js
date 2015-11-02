@@ -5,9 +5,11 @@ const ReportSource = {
     fetchReports: {
         remote(state) {
             var res
-            axios.get('http://localhost:3000/api/Reports').then(function (response) {
-                res = response
-            })
+            axios.get(
+                'http://localhost:3000/api/Reports?filter[include][owner][identities]')
+                    .then(function (response) {
+                        res = response
+                    })
             // Add delay for load animation testing
             return new Promise(function (resolve, reject) {
                 setTimeout(function () {
