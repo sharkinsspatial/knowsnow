@@ -3,6 +3,7 @@ import React from 'react'
 import {Router, Route, IndexRoute} from 'react-router'
 import ReportStore from '../stores/ReportStore'
 import ParkingLotStore from '../stores/ParkingLotStore'
+import AuthenticationStore from '../stores/AuthenticationStore'
 import ReportListContainer from './ReportListContainer'
 import CreateReportContainer from './CreateReportContainer'
 import Col from 'react-bootstrap/lib/Col'
@@ -15,6 +16,9 @@ import Navbar from 'react-bootstrap/lib/Navbar'
 import Nav from 'react-bootstrap/lib/Nav'
 import NavItem from 'react-bootstrap/lib/NavItem'
 import {LinkContainer} from 'react-router-bootstrap'
+import Login from './Login'
+import AuthenticationActions from '../actions/AuthenticationActions'
+
 
 class Application extends React.Component {
     componentDidMount() {
@@ -51,12 +55,26 @@ class Application extends React.Component {
         )
     }
 }
+function requireAuthorization(nextState, replaceState) {
+    if(!AuthenticationStore.isLoggedIn()) {
+        if (nextState.location.query.access_token) {
+            let test = nextState.location.query.access_token
+            AuthenticationActions.login(nextState.location.query.access_token)
+            //TractActions.login(token)
+        }
+        else {
+            replaceState({ nextPathname: nextState.location.pathname }, '/login')
+        }
+    }
+}
 
 React.render((
     <Router>
         <Route path='/' component={Application}>
             <IndexRoute component={ReportListContainer}/>
-            <Route path='create' component={CreateReportContainer}/>
+            <Route path='login' component={Login}/>
+            <Route path='create' component={CreateReportContainer}
+            onEnter={requireAuthorization}/>
         </Route>
     </Router>
 ), document.getElementById('content'))

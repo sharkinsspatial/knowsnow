@@ -1,5 +1,6 @@
 import axios from 'axios'
 import ReportActions from '../actions/ReportActions'
+import AuthenticationStore from '../stores/AuthenticationStore'
 
 const ReportSource = {
     fetchReports: {
@@ -35,7 +36,10 @@ const ReportSource = {
     createReport: {
         remote(state) {
             var res
-            axios.post('http://localhost:3000/api/Reports', state.createdReport)
+            let token = AuthenticationStore.getToken()
+            let url = 'http://localhost:3000/api/Reports?access_token=' +
+                token
+            axios.post(url, state.createdReport)
                 .then(function (response) {
                     res = response
             })
