@@ -2,7 +2,7 @@ import alt from '../alt'
 
 class AuthenticationActions {
     constructor() {
-        this.generateActions('login')
+        this.generateActions('login', 'updateUser', 'userFailed')
     }
 }
 

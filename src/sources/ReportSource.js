@@ -36,9 +36,9 @@ const ReportSource = {
     createReport: {
         remote(state) {
             var res
-            let token = AuthenticationStore.getToken()
+            let authenticationStoreState = AuthenticationStore.getState()
             let url = 'http://localhost:3000/api/Reports?access_token=' +
-                token
+                authenticationStoreState.token
             axios.post(url, state.createdReport)
                 .then(function (response) {
                     res = response

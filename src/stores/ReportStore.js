@@ -2,6 +2,7 @@ import alt from '../alt'
 import ReportSource from '../sources/ReportSource'
 import ReportActions from '../actions/ReportActions'
 import moment from 'moment'
+import AuthenticationStore from './AuthenticationStore'
 
 class ReportStore {
     constructor() {
@@ -31,6 +32,7 @@ class ReportStore {
             let moreRecent = moment(current.date).isAfter(accumulator.date) ?
                 current : accumulator
             //Setting lookup map here since we are iterating
+            current.displayName = current.owner.identities[0].profile.displayName
             this.reports.set(current.id, current)
             return moreRecent
         }, {id:0, date: moment('2010', 'YYYY')})
@@ -38,9 +40,10 @@ class ReportStore {
     }
 
     addReport(report) {
-        let id = Math.floor(Math.random() * (1000 - 100)) + 100
-        report.id = id
         this.reports.set(report.id, report)
+        let authenticationStoreState = AuthenticationStore.getState()
+        report.displayName = authenticationStoreState.user.identities[0]
+            .profile.displayName
         //State is immutable so we need a new array from concat here
         this.setState({reports: this.state.reports.concat([report]),
             createdReportRoute: null})

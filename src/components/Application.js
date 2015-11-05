@@ -59,8 +59,9 @@ function requireAuthorization(nextState, replaceState) {
     if(!AuthenticationStore.isLoggedIn()) {
         if (nextState.location.query.access_token) {
             let test = nextState.location.query.access_token
-            AuthenticationActions.login(nextState.location.query.access_token)
-            //TractActions.login(token)
+            let login = {token: nextState.location.query.access_token,
+                userId: nextState.location.query.userId}
+            AuthenticationActions.login(login)
         }
         else {
             replaceState({ nextPathname: nextState.location.pathname }, '/login')
