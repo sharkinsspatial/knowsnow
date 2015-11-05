@@ -13,6 +13,7 @@ var CreateReportContainer = React.createClass({
     mixins: [History],
     componentDidMount() {
         ParkingLotStore.getParkingLots()
+        ReportActions.setCreateMode(true)
         ReportActions.setActiveReport()
     },
     render() {

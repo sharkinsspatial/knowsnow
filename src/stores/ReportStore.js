@@ -17,6 +17,7 @@ class ReportStore {
         this.bindAction(ReportActions.createReport, this.onCreateReport)
         this.bindAction(ReportActions.updateReport, this.onUpdateReport)
         this.bindAction(ReportActions.setReportRouteDistance, this.onSetDistance)
+        this.bindAction(ReportActions.setCreateMode, this.onSetCreateMode)
 
         this.exportPublicMethods({
             getReports: this.getReports
@@ -85,6 +86,9 @@ class ReportStore {
         this.addReport(response.data)
     }
 
+    onSetCreateMode(mode) {
+        this.setState({ createMode: mode })
+    }
     getReports() {
         if (!this.isLoading()) {
             this.fetchReports()

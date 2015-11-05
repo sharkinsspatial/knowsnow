@@ -6,7 +6,8 @@ class ReportActions {
              'createReport', 'creatingReport', 'updateReport', 'createReportFailed',
              'setActiveReport',
              'createReportRoute',
-             'setReportRouteDistance')
+             'setReportRouteDistance',
+             'setCreateMode')
     }
 }
 
