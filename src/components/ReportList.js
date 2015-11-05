@@ -1,6 +1,7 @@
 import React from 'react'
 import Accordion from 'react-bootstrap/lib/Accordion'
 import Panel from 'react-bootstrap/lib/Panel'
+import Label from 'react-bootstrap/lib/Label'
 import moment from 'moment'
 
 class ReportList extends React.Component {
@@ -13,10 +14,14 @@ class ReportList extends React.Component {
             let date = moment(report.date).format('MMM DD')
             let dateDifference = moment(report.date).fromNow()
             return (
-                <Panel header={date + ' (' + dateDifference + ') by ' +
-                    report.displayName}
+                <Panel header={dateDifference + ' by ' + report.displayName}
                     key={report.id} eventKey={report.id}>
-                    {report.narrative}
+                    <Panel>
+                    <h4><Label bsStyle='primary'>{report.skiType}</Label></h4>
+                    <h4><Label>{report.glideWax}</Label></h4>
+                    <h4><Label>{report.gripWax}</Label></h4>
+                        {report.narrative}
+                    </Panel>
                 </Panel>
             )
         })
