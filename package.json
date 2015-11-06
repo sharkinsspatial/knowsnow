@@ -26,6 +26,7 @@
   "dependencies": {
     "alt": "^0.17.3",
     "axios": "^0.6.0",
+    "babel-polyfill": "^6.0.16",
     "classnames": "^2.1.5",
     "drmonty-leaflet-awesome-markers": "^2.0.2",
     "leaflet": "^0.7.5",
