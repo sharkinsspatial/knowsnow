@@ -16,6 +16,9 @@ var CreateReportContainer = React.createClass({
         ReportActions.setCreateMode(true)
         ReportActions.setActiveReport()
     },
+    componentWillUnmount() {
+        ReportActions.setCreateMode(false)
+    },
     render() {
         return (
             <AltContainer stores={{ParkingLots: ParkingLotStore,

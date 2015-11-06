@@ -178,7 +178,7 @@ class ReportMap extends React.Component {
         if (nextProps.Reports.activeReport !== this.props.Reports.activeReport) {
             this.reportRoute.clearLayers()
             this.reportRouteLayerGroup.clearLayers()
-            if (nextProps.Reports.activeReportRoute & !this.props.Reports.createMode) {
+            if (nextProps.Reports.activeReportRoute && !this.props.Reports.createMode) {
                 this.addReportRoute(nextProps.Reports.activeReportRoute)
             }
         }

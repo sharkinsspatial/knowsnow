@@ -6,7 +6,7 @@ import AuthenticationStore from './AuthenticationStore'
 
 class ReportStore {
     constructor() {
-        this.state = {}
+        this.state = { createMode: false }
         this.reports = new Map()
         this.reportRoute = {}
         this.registerAsync(ReportSource)
