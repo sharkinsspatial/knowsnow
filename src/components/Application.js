@@ -6,6 +6,7 @@ import ParkingLotStore from '../stores/ParkingLotStore'
 import AuthenticationStore from '../stores/AuthenticationStore'
 import ReportListContainer from './ReportListContainer'
 import CreateReportContainer from './CreateReportContainer'
+import Grid from 'react-bootstrap/lib/Grid'
 import Col from 'react-bootstrap/lib/Col'
 import Row from 'react-bootstrap/lib/Row'
 import Panel from 'react-bootstrap/lib/Panel'
@@ -28,7 +29,7 @@ class Application extends React.Component {
     render() {
         return (
             <div>
-                <Navbar brand='Know Snow' toggleNavKey={0}>
+                <Navbar fluid fixedTop brand='Know Snow' toggleNavKey={0}>
                 <Nav right eventKey={0}>
                     <LinkContainer to='/create'>
                         <NavItem eventKey={1}>Create Report</NavItem>
@@ -38,8 +39,9 @@ class Application extends React.Component {
                     </LinkContainer>
                 </Nav>
                 </Navbar>
+                <Grid fluid>
                 <Row>
-                <Col md={4}>
+                <Col className={'scroll'} md={4}>
                 <Panel>
                     {this.props.children}
                 </Panel>
@@ -51,6 +53,7 @@ class Application extends React.Component {
                     </AltContainer>
                 </Col>
                 </Row>
+                </Grid>
             </div>
         )
     }
