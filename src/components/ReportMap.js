@@ -13,14 +13,14 @@ class ReportMap extends React.Component {
         let attribution = '<a href="https://www.mapbox.com/about/maps/"' +
             'target="_blank">&copy; Mapbox &copy; OpenStreetMap</a>'
         let subdomains = ['a', 'b', 'c', 'd']
-
+        let retina = L.Browser.retina ? '@2x' : ''
         this.baseLayer = L.tileLayer(
-            'https://{s}.tiles.mapbox.com/v4/{mapId}/{z}/{x}/{y}.png?' +
-            'access_token={token}', {
+            'https://{s}.tiles.mapbox.com/v4/{mapId}/{z}/{x}/{y}' +
+                retina + '.png?' + 'access_token={token}', {
                 attribution: attribution,
                 subdomains: subdomains,
-                mapId: 'sharkins.lbp79oa3',
-                token: MapBoxToken
+                mapId: 'andreasviglakis.76e0cee7',
+                token: MapBoxToken,
             }
         )
         let node = React.findDOMNode(this)
