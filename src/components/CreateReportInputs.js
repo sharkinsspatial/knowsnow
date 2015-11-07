@@ -91,9 +91,11 @@ class CreateReportInputs extends React.Component {
                 placeholder='Your report here'
                 onChange={this.handleNarrativeChange}
                 disabled={!route ? true : false}/>
+            <div className={'text-center'}>
             <ButtonInput type='submit' value='Submit Report'
                 onClick={this.handleSubmit} disabled={!route || !narrative
                     ? true : false}/>
+            </div>
             </div>
         )
     }
