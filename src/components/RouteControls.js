@@ -17,6 +17,7 @@ class RouteControls extends React.Component {
 
     handleSelect = (event, id) => {
         this.props.ParkingLotActions.setActiveParkingLot(id)
+        this.props.ReportActions.setReportRouteDistance()
         this.setState({ open: false })
     }
 
