@@ -1,6 +1,6 @@
 .map {
-    width:100%;
-    height:99%;
+    width: 100%;
+    height: 99%;
     bottom: 0;
     overflow: hidden;
     border: 1px solid #dddddd;
@@ -9,12 +9,12 @@
     display: none;
 }
 .route-popup .leaflet-popup-content-wrapper {
-  background:#2c3e50;
-  color:#fff;
-  border-radius: 4px;
+  background: #333333;
+  color: #ffffff;
+  border-radius: 0px;
 }
 .route-popup .leaflet-popup-tip {
-    background:#2c3e50;
+    background: #333333;
 }
 .route-popup .leaflet-popup-close-button {
     visibility: hidden;
@@ -29,4 +29,8 @@ body {
 .scroll {
     overflow-y: scroll;
     height: 100%;
+}
+.leaflet-container {
+    font: 14px "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
 }
