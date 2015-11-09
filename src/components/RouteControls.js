@@ -6,8 +6,9 @@ import Input from 'react-bootstrap/lib/Input'
 import Glyphicon from 'react-bootstrap/lib/Glyphicon'
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar'
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup'
-import Fade from 'react-bootstrap/lib/Fade'
 import Well from 'react-bootstrap/lib/Well'
+import Alert from 'react-bootstrap/lib/Alert'
+import Collapse from 'react-bootstrap/lib/Collapse'
 
 class RouteControls extends React.Component {
     constructor(props) {
@@ -31,6 +32,13 @@ class RouteControls extends React.Component {
         this.props.ReportActions.setReportRouteDistance()
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.Reports.createdReportRoute) {
+            this.setState({ continueOpen: true })
+        }
+
+    }
+
     render() {
         var parkingLotItems = []
         if (this.props.ParkingLots.parkinglots) {
@@ -44,15 +52,13 @@ class RouteControls extends React.Component {
         let distance = this.props.Reports.reportRouteDistance ?
                         (this.props.Reports.reportRouteDistance / 1000)
                         .toFixed(1) : 0
-
         return (
             <div>
-            <Fade in={this.state.open} unmountOnExit={true}>
+            <Collapse in={this.state.open} unmountOnExit={true}>
                 <Well>
-                    Select a starting Parking Lot and then follow the directions
-                    on the map to trace your ski route.
+                    Select a starting Parking Lot and begin clicking slowly along the route you skied.  The map will draw a line between the points making sure your route stays on the trail.  If you make a mistake click undo and the last section you traced will be removed.
                 </Well>
-            </Fade>
+            </Collapse>
             <Input>
                 <div className={'text-center'}>
                 <DropdownButton title={'Parking Lot'}
