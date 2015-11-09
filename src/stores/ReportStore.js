@@ -45,9 +45,12 @@ class ReportStore {
         let authenticationStoreState = AuthenticationStore.getState()
         report.displayName = authenticationStoreState.user.identities[0]
             .profile.displayName
-        //State is immutable so we need a new array from concat here
-        this.setState({reports: this.state.reports.concat([report]),
-            createdReportRoute: null})
+        //State is immutable so we need a new array here
+        let newArray = this.state.reports.slice()
+        newArray.unshift(report)
+        this.setState({ reports: newArray, createdReportRoute: null,
+            activeReport: report.id, activeReportRoute: report.route,
+            createMode: false})
     }
 
     onUpdateReports(response) {
