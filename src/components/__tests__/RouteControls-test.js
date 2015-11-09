@@ -8,7 +8,6 @@ const TestUtils = require('react/lib/ReactTestUtils')
 const RouteControls = require('../RouteControls')
 const MenuItem = require('react-bootstrap/lib/MenuItem')
 const DropdownButton = require('react-bootstrap/lib/DropdownButton')
-const sd = require('skin-deep')
 
 describe('RouteControls', () => {
     var ParkingLotActions = {}
@@ -42,15 +41,14 @@ describe('RouteControls', () => {
 
     it('Should render one list item when passed a single parking lot prop',
         () => {
-            const tree = sd.shallowRender(React.createElement(RouteControls,
-                                            propsObject))
-            const vdom = tree.getRenderOutput()
-            const input = vdom.props.children
-            const dropDown = input.props.children.filter(dropDown => TestUtils
-                .isElementOfType(dropDown, DropdownButton))
-            const menuItems = dropDown[0].props.children.filter(menuItem => TestUtils
-                .isElementOfType(menuItem, MenuItem))
-            expect(menuItems.length).toEqual(1)
+            let instance = TestUtils.renderIntoDocument(
+               <RouteControls ParkingLots={ParkingLots}
+                ParkingLotActions={ParkingLotActions} Reports={Reports}
+                ReportActions={ReportActions}/>
+            )
+            let dropDown = TestUtils.findRenderedComponentWithType(
+                instance, DropdownButton)
+            expect(dropDown.props.children.length).toEqual(1)
     })
     //Need to upgrade React to version where shallowRenderer supports
     //getMountedInstance
