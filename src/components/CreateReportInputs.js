@@ -64,7 +64,8 @@ class CreateReportInputs extends React.Component {
             'fa': true,
             'fa-refresh': this.state.submitting,
             'fa-spin': this.state.submitting,
-            'fa-3x': this.state.submitting
+            'fa-3x': this.state.submitting,
+            'spinnerSpacing': this.state.submitting
         })
         return (
             <div>
@@ -101,11 +102,11 @@ class CreateReportInputs extends React.Component {
                 onChange={this.handleNarrativeChange}
                 disabled={!route ? true : false}/>
             <div className={'text-center'}>
+            <div><i className={btnClass}></i></div>
             <ButtonInput type='submit' value='Submit Report'
                 onClick={this.handleSubmit} disabled={!route || !narrative
                     ? true : false}>
             </ButtonInput>
-            <div><i className={btnClass}></i></div>
             </div>
             </div>
         )

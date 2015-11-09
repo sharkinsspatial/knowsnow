@@ -34,3 +34,6 @@ body {
     font: 12px "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 300;
 }
+.spinnerSpacing {
+    margin-bottom: 15px;
+}
