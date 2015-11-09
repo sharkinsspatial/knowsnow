@@ -59,7 +59,7 @@ class ReportMap extends React.Component {
         let options = { profile: 'mapbox.walking' }
         this.routingControl = L.Routing.control({
             router: new L.Routing.Mapbox(MapBoxToken, options),
-            show: false,
+           show: false,
             waypointMode: 'snap',
             fitSelectedRoutes: false,
             draggableWaypoints: true,
@@ -84,7 +84,7 @@ class ReportMap extends React.Component {
                 let popupButtons = React.renderToStaticMarkup(<RouteMarkerPopup/>)
                 let div = document.createElement('div')
                 div.innerHTML = popupButtons
-                this.tempMarker.bindPopup(div, {minWidth: 115})
+                this.tempMarker.bindPopup(div, {minWidth: 120})
                 this.tempMarker.on('add', (event) => {
                     event.target.openPopup()
                     document.querySelector('.map .undo')
@@ -108,7 +108,9 @@ class ReportMap extends React.Component {
 
         this.finalMarker =  new L.marker(this.lastRouteSegment[
                                          this.lastRouteSegment.length - 1],
-                       {icon: this.finalizedIcon}).addTo(this.routeLayerGroup)
+                       {icon: this.finalizedIcon})
+                       .bindPopup('Now finish entering your report')
+                       .addTo(this.routeLayerGroup).openPopup()
         this.routeLineCoords.push(...this.lastRouteSegment)
         this.routeLine.setLatLngs(this.routeLineCoords)
         this.map.fitBounds(this.routeLine.getBounds(), { padding: [5,5] })
@@ -191,7 +193,7 @@ class ReportMap extends React.Component {
                         nextProps.ParkingLots.activeParkingLot
                             .geometry.coordinates, true)
                     this.startRouting(latlng)
-                    this.map.setView(latlng, 15)
+                    this.map.setView(latlng, 14)
                 }
         }
         if (this.props.Reports.createdReportRoute &&
@@ -229,7 +231,7 @@ class ReportMap extends React.Component {
             this.routeLayerGroup.removeLayer(this.startMarker)
         }
         this.startMarker = new L.marker(latlng, {icon: this.startIcon})
-        this.startMarker.bindPopup('First Marker')
+        this.startMarker.bindPopup('Start clicking slowly along your route')
             .addTo(this.routeLayerGroup).openPopup()
 
         this.map.on('click', this.handleRoutingClick)
