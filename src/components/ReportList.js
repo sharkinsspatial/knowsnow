@@ -12,7 +12,7 @@ class ReportList extends React.Component {
     render() {
         let reportNodes = this.props.reports.map(report => {
             let date = moment(report.date).format('MMM DD')
-            let dateDifference = moment(report.date).fromNow()
+            let dateDifference = moment(report.endTime).fromNow()
             return (
                 <Panel header={dateDifference + ' by ' + report.displayName}
                     key={report.id} eventKey={report.id}>
