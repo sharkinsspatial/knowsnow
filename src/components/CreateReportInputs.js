@@ -3,18 +3,21 @@ import Input from 'react-bootstrap/lib/Input'
 import ButtonInput from 'react-bootstrap/lib/ButtonInput'
 import DateTimeField from 'react-bootstrap-datetimepicker'
 import moment from 'moment'
+import classNames from 'classnames'
 
 class CreateReportInputs extends React.Component {
     constructor(props) {
         super(props)
         this.storageFormat = 'YYYY-MM-DDTHH:mm:ss'
         let now = moment().format(this.storageFormat)
-        this.state = {skiType: props.skiType, date: now, narrative: false}
+        this.state = {skiType: props.skiType, date: now, narrative: false,
+                        submitting: false}
     }
 
     handleSubmit = (event) => {
         let report = this.serializeForm()
         this.props.ReportActions.createReport(report)
+        this.setState({ submitting: true })
     }
 
     handleSkiTypeChange = (event) => {
@@ -57,6 +60,12 @@ class CreateReportInputs extends React.Component {
     render() {
         let route = this.props.Reports.createdReportRoute
         let narrative = this.state.narrative
+        let btnClass = classNames({
+            'fa': true,
+            'fa-refresh': this.state.submitting,
+            'fa-spin': this.state.submitting,
+            'fa-3x': this.state.submitting
+        })
         return (
             <div>
             <Input type='select' label='Ski Type' ref='skiType'
@@ -94,7 +103,9 @@ class CreateReportInputs extends React.Component {
             <div className={'text-center'}>
             <ButtonInput type='submit' value='Submit Report'
                 onClick={this.handleSubmit} disabled={!route || !narrative
-                    ? true : false}/>
+                    ? true : false}>
+            </ButtonInput>
+            <div><i className={btnClass}></i></div>
             </div>
             </div>
         )
