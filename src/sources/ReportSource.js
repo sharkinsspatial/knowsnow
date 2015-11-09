@@ -5,23 +5,23 @@ import AuthenticationStore from '../stores/AuthenticationStore'
 const ReportSource = {
     fetchReports: {
         remote(state) {
-            var res
-            axios.get(
+            //var res
+            return axios.get(
                 'http://localhost:3000/api/Reports?filter[include][owner][identities]')
-                    .then(function (response) {
-                        res = response
-                    })
+                    //.then(function (response) {
+                        //res = response
+                    //})
             // Add delay for load animation testing
-            return new Promise(function (resolve, reject) {
-                setTimeout(function () {
-                    // change this to `false` to see the error action being handled.
-                    if (true) {
-                        resolve(res)
-                    } else {
-                        reject('Things have broken')
-                    }
-                }, 2000)
-            })
+            //return new Promise(function (resolve, reject) {
+                //setTimeout(function () {
+                    //// change this to `false` to see the error action being handled.
+                    //if (true) {
+                        //resolve(res)
+                    //} else {
+                        //reject('Things have broken')
+                    //}
+                //}, 2000)
+            //})
         },
 
         local(state) {
