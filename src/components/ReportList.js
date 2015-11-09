@@ -18,8 +18,8 @@ class ReportList extends React.Component {
                     key={report.id} eventKey={report.id}>
                     <Panel>
                     <h4><Label bsStyle='primary'>{report.skiType}</Label></h4>
-                    <h4><Label>{report.glideWax}</Label></h4>
-                    <h4><Label>{report.gripWax}</Label></h4>
+                    <h4><Label bsStyle='success'>{report.glideWax}</Label></h4>
+                    <h4><Label bsStyle='danger'>{report.gripWax}</Label></h4>
                         {report.narrative}
                     </Panel>
                 </Panel>
