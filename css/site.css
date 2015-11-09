@@ -31,6 +31,6 @@ body {
     height: 100%;
 }
 .leaflet-container {
-    font: 14px "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font: 12px "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 300;
 }
