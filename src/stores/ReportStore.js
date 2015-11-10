@@ -30,13 +30,13 @@ class ReportStore {
 
     loadReports(reports) {
         let mostRecent = reports.reduce((accumulator, current) => {
-            let moreRecent = moment(current.date).isAfter(accumulator.date) ?
+            let moreRecent = moment(current.endTime).isAfter(accumulator.endTime) ?
                 current : accumulator
             //Setting lookup map here since we are iterating
             current.displayName = current.owner.identities[0].profile.displayName
             this.reports.set(current.id, current)
             return moreRecent
-        }, {id:0, date: moment('2010', 'YYYY')})
+        }, {id:0, endTime: moment('2010', 'YYYY')})
         return mostRecent
     }
 

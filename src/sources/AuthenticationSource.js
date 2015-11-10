@@ -1,11 +1,12 @@
 import axios from 'axios'
 import AuthenticationActions from '../actions/AuthenticationActions'
+let rootUrl = 'apiUrl' 
 
 const AuthenticationSource = {
     fetchUser: {
         remote(state) {
             var res
-            let url = 'http://localhost:3000/api/Users/' + state.userId +
+            let url = rootUrl + 'api/Users/' + state.userId +
             '?filter[include][identities]&access_token=' + state.token
             return axios.get(url)
         },

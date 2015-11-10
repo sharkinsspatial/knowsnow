@@ -8,7 +8,7 @@ class Login extends React.Component {
     }
 
     render() {
-        let loginUrl = 'http://localhost:3000/auth/facebook'
+        let loginUrl = 'apiUrl' + 'auth/facebook'
         let btnClass = classNames({
             'fa': true,
             'fa-facebook': !this.state.loading,

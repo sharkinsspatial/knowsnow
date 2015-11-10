@@ -1,13 +1,13 @@
 import axios from 'axios'
 import ReportActions from '../actions/ReportActions'
 import AuthenticationStore from '../stores/AuthenticationStore'
-
+const rootUrl = 'apiUrl'
 const ReportSource = {
     fetchReports: {
         remote(state) {
             //var res
             return axios.get(
-                'http://localhost:3000/api/Reports?filter[order]=endTime' +
+                rootUrl + 'api/Reports?filter[order]=endTime' +
                     '%20DESC&filter[include][owner][identities]')
                     //.then(function (response) {
                         //res = response
@@ -24,7 +24,6 @@ const ReportSource = {
                 //}, 2000)
             //})
         },
-
         local(state) {
             return state.reports ? state.reports : null
         },
@@ -38,7 +37,7 @@ const ReportSource = {
         remote(state) {
             var res
             let authenticationStoreState = AuthenticationStore.getState()
-            let url = 'http://localhost:3000/api/Reports?access_token=' +
+            let url = rootUrl + 'api/Reports?access_token=' +
                 authenticationStoreState.token
             axios.post(url, state.createdReport)
                 .then(function (response) {

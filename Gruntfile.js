@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         watch: {
             react: {
                 files: ['src/*.js', 'src/**/*.js'],
-                tasks: ['browserify:dev']
+                tasks: ['dev']
             }
         },
         browserify: {
@@ -39,11 +39,36 @@ module.exports = function(grunt) {
             dist: {
                 NODE_ENV: 'production'
             }
+        },
+        replace: {
+            dist: {
+                options: {
+                    patterns: [{ match: 'apiUrl', replacement:
+                        'http://knowsnowapi.herokuapp.com/'}],
+                    usePrefix: false
+                },
+                files: [
+                    {expand: true, flatten: true, src: ['dist/main.js'],
+                        dest: 'dist/'}
+                ]
+            },
+            dev: {
+                options: {
+                    patterns: [{match: 'apiUrl', replacement:
+                        'http://localhost:3000/'}], usePrefix: false
+                },
+                files: [
+                    {expand: true, flatten: true, src: ['dist/main.js'],
+                        dest: 'dist/'}
+                ]
+            }
         }
     });
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-env');
+    grunt.loadNpmTasks('grunt-replace');
 
-    grunt.registerTask('dev', ['env:dev', 'browserify:dev']);
+    grunt.registerTask('dev', ['env:dev', 'browserify:dev', 'replace:dev']);
+    grunt.registerTask('dist', ['env:dist', 'browserify:dist', 'replace:dist'])
 };
