@@ -41,5 +41,5 @@ class ParkingLotStore {
     }
 }
 
-const parkingLotStore = alt.createStore(ParkingLotStore)
+const parkingLotStore = alt.createStore(ParkingLotStore, 'parkingLotStore')
 export default parkingLotStore

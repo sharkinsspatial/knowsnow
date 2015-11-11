@@ -29,6 +29,6 @@ class AuthenticationStore {
 
 }
 
-const authenticationStore = alt.createStore(AuthenticationStore)
+const authenticationStore = alt.createStore(AuthenticationStore, 'authStore')
 
 export default authenticationStore

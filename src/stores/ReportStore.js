@@ -99,6 +99,6 @@ class ReportStore {
     }
 }
 
-const reportStore = alt.createStore(ReportStore)
+const reportStore = alt.createStore(ReportStore, 'reportStore')
 
 export default reportStore
