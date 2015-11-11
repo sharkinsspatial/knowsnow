@@ -11,7 +11,8 @@
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
       "<rootDir>/node_modules/skin-deep",
-      "<rootDir>/node_modules/babel-polyfill"
+      "<rootDir>/node_modules/babel-polyfill",
+      "<rootDir>/node_modules/grunt-aws"
     ]
   },
   "repository": {
