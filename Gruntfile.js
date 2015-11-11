@@ -64,55 +64,51 @@ module.exports = function(grunt) {
             }
         },
         aws: grunt.file.readJSON('/Users/Sharkins/Documents/AWS/grunt-aws.json'),
-        aws_s3: {
+        s3: {
             options: {
                 accessKeyId: '<%= aws.key %>',
                 secretAccessKey: '<%= aws.secret %>',
                 bucket: 'knowsnow',
                 access: 'public-read',
-                params: {
+                header: {
                     // Two Year cache policy (1000 * 60 * 60 * 24 * 730)
                     CacheControl: "max-age=630720000, public",
                     Expires: new Date(Date.now() + 63072000000).toISOString()
-                }
+                },
+                overwrite: true,
+                cache: false
             },
             dist: {
                 files: [
                 {
-                    src: 'index.html',
-                    dest: 'index.html'
+                    src: 'index.html'
                 },
                 {
-                    src: 'dist/*',
-                    dest: '/'
+                    src: 'dist/**'
                 },
                 {
-                    src: 'css/*',
-                    dest: '/'
+                    src: 'css/**',
                 },
                 {
-                    src: 'node_modules/leaflet/dist/*.css',
-                    dest: '/'
+                    src: 'node_modules/leaflet/dist/*.css'
                 },
                 {
-                    src: 'node_modules/leaflet/dist/images/*.png',
-                    dest: '/'
+                    src: 'node_modules/leaflet/dist/images/*.png'
                 },
                 {
-                    src: 'node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css',
-                    dest: '/'
+                    src: 'node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css'
                 },
                 {
-                    src: 'node_modules/drmonty-leaflet-awesome-markers/css/**',
-                    dest: '/'
+                    src: 'node_modules/drmonty-leaflet-awesome-markers/css/**'
                 },
                 {
-                    src: 'node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.css',
-                    dest: '/'
+                    src: 'node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.css'
                 },
                 {
-                    src: 'node_modules/babel-polyfill/dist/polyfill.min.js',
-                    dest: '/'
+                    src: 'node_modules/babel-polyfill/dist/polyfill.min.js'
+                },
+                {
+                    src: 'ParkingLots.geojson'
                 }]
             }
         },
@@ -128,10 +124,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-replace');
-    grunt.loadNpmTasks('grunt-aws-s3');
+    grunt.loadNpmTasks('grunt-aws');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('dev', ['env:dev', 'browserify:dev', 'replace:dev']);
     grunt.registerTask('dist', ['env:dist', 'browserify:dist', 'replace:dist',
-        'uglify:dist', 'aws_s3:dist'])
+        'uglify:dist', 's3:dist'])
 };
