@@ -13,11 +13,10 @@ You can then run
 ````shell
 $ grunt watch
 ````
-And any changes you make int the src files will be compiled on the fly into the /dist/main.js file that the application uses.
+And any changes you make in the src files will be compiled on the fly into the /dist/main.js file that the application uses.
 Newer versions of OSX may have file handle limitations which prevent the browserify task from running correctly see [this](https://github.com/substack/node-browserify/issues/431) for more information and a solution.
 
 The application requires an instance of the [knowsnowapi](https://github.com/sharkinsspatial/knowsnowapi) running in the background for local testing.  These are referenced in the <code>dev</code> section of the <code>replace</code> task in the <code>Gruntfile.js</code>.
-You can set the api address in the 'replace' task in Gruntfile.js
 
 To build the application for local testing run
 ````shell
@@ -27,7 +26,7 @@ Run unit tests with
 ````shell
 $ npm test
 ````
-To serve the application locally I use [serve](https://github.com/tj/serve) you can install it globally using
+To serve the application locally I use [serve](https://github.com/tj/serve). You can install it globally using
 ````shell
 $ npm install -g serve
 ````
