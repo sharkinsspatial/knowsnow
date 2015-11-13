@@ -2,29 +2,8 @@
   "type": "FeatureCollection",
   "generator": "overpass-turbo",
   "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
-  "timestamp": "2015-09-29T12:54:02Z",
+  "timestamp": "2015-11-13T18:16:01Z",
   "features": [
-    {
-      "type": "Feature",
-      "id": "node/471268919",
-      "properties": {
-        "@id": "node/471268919",
-        "amenity": "parking",
-        "capacity": "30",
-        "fee": "no",
-        "name": "Prom. Champlain",
-        "park_ride": "no",
-        "parking": "surface",
-        "supervised": "no"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.9127134,
-          45.5082881
-        ]
-      }
-    },
     {
       "type": "Feature",
       "id": "node/3755187215",
@@ -101,7 +80,7 @@
         "@id": "way/26719610",
         "amenity": "parking",
         "fee": "yes",
-        "name": "P7",
+        "name": "P6",
         "parking": "surface",
         "@geometry": "center"
       },
@@ -109,7 +88,63 @@
         "type": "Point",
         "coordinates": [
           -75.8459541,
-          45.4842914
+          45.484265
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/39438466",
+      "properties": {
+        "@id": "way/39438466",
+        "amenity": "parking",
+        "fee": "no",
+        "name": "P7",
+        "ref": "P7",
+        "surface": "gravel",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8418172,
+          45.4907264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/39691155",
+      "properties": {
+        "@id": "way/39691155",
+        "amenity": "parking",
+        "name": "P3",
+        "parking": "surface",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.761423,
+          45.4405951
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/55152804",
+      "properties": {
+        "@id": "way/55152804",
+        "access": "permissive",
+        "amenity": "parking",
+        "name": "P4",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7680617,
+          45.4588942
         ]
       }
     },
@@ -136,6 +171,60 @@
     },
     {
       "type": "Feature",
+      "id": "way/152139877",
+      "properties": {
+        "@id": "way/152139877",
+        "amenity": "parking",
+        "name": "P16",
+        "parking": "surface",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8853008,
+          45.5722354
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/162260930",
+      "properties": {
+        "@id": "way/162260930",
+        "amenity": "parking",
+        "name": "P1",
+        "source": "Bing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7653864,
+          45.4501736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/162283399",
+      "properties": {
+        "@id": "way/162283399",
+        "amenity": "parking",
+        "name": "P2",
+        "source": "Bing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7741514,
+          45.4619918
+        ]
+      }
+    },
+    {
+      "type": "Feature",
       "id": "way/229840965",
       "properties": {
         "@id": "way/229840965",
@@ -153,28 +242,11 @@
     },
     {
       "type": "Feature",
-      "id": "way/345805735",
-      "properties": {
-        "@id": "way/345805735",
-        "amenity": "parking",
-        "name": "Park and Ride",
-        "@geometry": "center"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -75.8076369,
-          45.5027062
-        ]
-      }
-    },
-    {
-      "type": "Feature",
       "id": "way/358568429",
       "properties": {
         "@id": "way/358568429",
         "amenity": "parking",
-        "name": "P13 Parking for Wolf Trail.",
+        "name": "P13",
         "@geometry": "center"
       },
       "geometry": {
@@ -182,6 +254,57 @@
         "coordinates": [
           -75.9100195,
           45.5435302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/380098855",
+      "properties": {
+        "@id": "way/380098855",
+        "amenity": "parking",
+        "name": "P15",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.900657,
+          45.5840844
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/380098856",
+      "properties": {
+        "@id": "way/380098856",
+        "amenity": "parking",
+        "name": "P17",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.9388868,
+          45.6284131
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/380099053",
+      "properties": {
+        "@id": "way/380099053",
+        "amenity": "parking",
+        "name": "P19",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.0143485,
+          45.6280901
         ]
       }
     }
