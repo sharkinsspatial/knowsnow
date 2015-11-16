@@ -1,6 +1,6 @@
 import React from 'react'
 import alt from '../alt'
-import AltContainer from 'alt/AltContainer'
+import AltContainer from 'alt-container'
 import ReportStore from '../stores/ReportStore'
 import ReportList from './ReportList'
 import ReportActions from '../actions/ReportActions'

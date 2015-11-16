@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from 'react-bootstrap/lib/Input'
 import ButtonInput from 'react-bootstrap/lib/ButtonInput'
-import DateTimeField from 'react-bootstrap-datetimepicker'
+import DateTimeField from 'sharkins-react-bootstrap-datetimepicker'
 import moment from 'moment'
 import classNames from 'classnames'
 
@@ -83,7 +83,7 @@ class CreateReportInputs extends React.Component {
                 <DateTimeField defaultText='Please select the ski date'
                     onChange={this.handleDateChange} inputFormat='MM/DD/YYYY'
                     ref='date' format={this.storageFormat}
-                    dateTime={this.state.date}/>
+                    dateTime={this.state.date} mode={'date'}/>
             </Input>
             <Input label='Start Time'>
                 <DateTimeField dateTime={this.state.date}

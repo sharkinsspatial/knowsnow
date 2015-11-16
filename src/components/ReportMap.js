@@ -1,4 +1,6 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+import ReactDOMServer from 'react-dom/server'
 import L from 'leaflet'
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 import MapBoxToken from '../../Tokens'
@@ -19,11 +21,11 @@ class ReportMap extends React.Component {
                 retina + '.png?' + 'access_token={token}', {
                 attribution: attribution,
                 subdomains: subdomains,
-                mapId: 'andreasviglakis.76e0cee7',
+                mapId: 'sharkins.69e17c44',
                 token: MapBoxToken,
             }
         )
-        let node = React.findDOMNode(this)
+        let node = ReactDOM.findDOMNode(this)
         this.map = L.map(node, {
             center: [45.493, -75.865],
             zoom: 14
@@ -81,7 +83,8 @@ class ReportMap extends React.Component {
         if (waypointIndex === 1) {
             this.tempMarker = new L.marker(waypoint.latLng, {icon: this.lastIcon})
             if (this.shouldPopup) {
-                let popupButtons = React.renderToStaticMarkup(<RouteMarkerPopup/>)
+                let popupButtons = ReactDOMServer
+                    .renderToStaticMarkup(<RouteMarkerPopup/>)
                 let div = document.createElement('div')
                 div.innerHTML = popupButtons
                 this.tempMarker.bindPopup(div, {minWidth: 120})
@@ -193,7 +196,7 @@ class ReportMap extends React.Component {
                         nextProps.ParkingLots.activeParkingLot
                             .geometry.coordinates, true)
                     this.startRouting(latlng)
-                    this.map.setView(latlng, 14)
+                    this.map.setView(latlng, 15)
                 }
         }
         if (this.props.Reports.createdReportRoute &&

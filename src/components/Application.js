@@ -1,5 +1,6 @@
 import alt from '../alt'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import {Router, Route, IndexRoute} from 'react-router'
 import ReportStore from '../stores/ReportStore'
 import ParkingLotStore from '../stores/ParkingLotStore'
@@ -11,7 +12,7 @@ import Col from 'react-bootstrap/lib/Col'
 import Row from 'react-bootstrap/lib/Row'
 import Panel from 'react-bootstrap/lib/Panel'
 import ReportMap from './ReportMap'
-import AltContainer from 'alt/AltContainer'
+import AltContainer from 'alt-container'
 import ReportActions from '../actions/ReportActions'
 import Navbar from 'react-bootstrap/lib/Navbar'
 import Nav from 'react-bootstrap/lib/Nav'
@@ -29,7 +30,7 @@ class Application extends React.Component {
     render() {
         return (
             <div>
-                <Navbar fluid fixedTop brand='Know Snow' toggleNavKey={0}>
+                <Navbar fluid fixedTop toggleNavKey={0}>
                 <Nav right eventKey={0}>
                     <LinkContainer to='/create'>
                         <NavItem eventKey={1}>Create Report</NavItem>
@@ -72,7 +73,7 @@ function requireAuthorization(nextState, replaceState) {
     }
 }
 
-React.render((
+ReactDOM.render((
     <Router>
         <Route path='/' component={Application}>
             <IndexRoute component={ReportListContainer}/>

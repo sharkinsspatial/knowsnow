@@ -27,6 +27,7 @@
   "homepage": "https://github.com/sharkinsspatial/knowsnow#readme",
   "dependencies": {
     "alt": "^0.17.3",
+    "alt-container": "^1.0.0",
     "axios": "^0.6.0",
     "babel-polyfill": "^6.0.16",
     "classnames": "^2.1.5",
@@ -35,11 +36,12 @@
     "leaflet-routing-machine": "^2.4.0",
     "lrm-mapbox": "^1.0.2",
     "moment": "^2.10.6",
-    "react": "^0.13.3",
-    "react-bootstrap": "^0.25.2",
-    "react-bootstrap-datetimepicker": "0.0.20",
+    "react": "^0.14.2",
+    "react-bootstrap": "^0.27.3",
+    "react-dom": "^0.14.2",
     "react-router": "^1.0.0-rc1",
-    "react-router-bootstrap": "^0.19.2"
+    "react-router-bootstrap": "^0.19.2",
+    "sharkins-react-bootstrap-datetimepicker": "0.0.22"
   },
   "devDependencies": {
     "babel-jest": "^5.3.0",
@@ -52,6 +54,7 @@
     "grunt-env": "^0.4.4",
     "grunt-replace": "^0.11.0",
     "jest-cli": "^0.5.9",
+    "react-addons-test-utils": "^0.14.2",
     "skin-deep": "^0.8.0"
   }
 }
