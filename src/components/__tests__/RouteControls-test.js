@@ -3,8 +3,8 @@ jest.dontMock('../RouteControls')
 
 //Use CommonJS require instead of import to prevent Babel hoisting above
 //dontMock.  See https://github.com/facebook/jest/issues/377
-const React = require('react/addons')
-const TestUtils = require('react/lib/ReactTestUtils')
+const React = require('react')
+const TestUtils = require('react-addons-test-utils')
 const RouteControls = require('../RouteControls')
 const MenuItem = require('react-bootstrap/lib/MenuItem')
 const DropdownButton = require('react-bootstrap/lib/DropdownButton')
@@ -50,16 +50,16 @@ describe('RouteControls', () => {
                 instance, DropdownButton)
             expect(dropDown.props.children.length).toEqual(1)
     })
-    //Need to upgrade React to version where shallowRenderer supports
-    //getMountedInstance
-    //it('Should clear the active parking lot when the component is unmounted',
-       //() => {
-            //const shallowRenderer = TestUtils.createRenderer()
-            //shallowRenderer.render(React.createElement(RouteControls,
-                        //propsObject))
-            //expect(ParkingLotActions.setActiveParkingLot.mock.calls.length)
-                //.toEqual(1)
-            //expect(ParkingLotActions.setActiveParkingLot.mock.calls[0])
-                   //.toEqual({})
-    //})
+    ////Need to upgrade React to version where shallowRenderer supports
+    ////getMountedInstance
+    ////it('Should clear the active parking lot when the component is unmounted',
+       ////() => {
+            ////const shallowRenderer = TestUtils.createRenderer()
+            ////shallowRenderer.render(React.createElement(RouteControls,
+                        ////propsObject))
+            ////expect(ParkingLotActions.setActiveParkingLot.mock.calls.length)
+                ////.toEqual(1)
+            ////expect(ParkingLotActions.setActiveParkingLot.mock.calls[0])
+                   ////.toEqual({})
+    ////})
 })

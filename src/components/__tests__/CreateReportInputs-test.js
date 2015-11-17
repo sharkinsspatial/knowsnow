@@ -4,10 +4,10 @@ jest.dontMock('moment')
 
 //Use CommonJS require instead of import to prevent Babel hoisting above
 //dontMock.  See https://github.com/facebook/jest/issues/377
-const React = require('react/addons')
-const TestUtils = require('react/lib/ReactTestUtils')
+const React = require('react')
+const TestUtils = require('react-addons-test-utils')
 
-//I hate Jest.
+////I hate Jest.
 const Button = require('react-bootstrap/lib/Button')
 const moment = require('moment')
 const CreateReportInputs = require('../CreateReportInputs')
