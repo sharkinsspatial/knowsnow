@@ -129,5 +129,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('dev', ['env:dev', 'browserify:dev', 'replace:dev']);
     grunt.registerTask('dist', ['env:dist', 'browserify:dist', 'replace:dist',
-        'uglify:dist', 's3:dist'])
+        'uglify:dist', 's3:dist', 'dev'])
 };
