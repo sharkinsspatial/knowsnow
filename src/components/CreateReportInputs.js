@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from 'react-bootstrap/lib/Input'
 import ButtonInput from 'react-bootstrap/lib/ButtonInput'
-import DateTimeField from 'sharkins-react-bootstrap-datetimepicker'
+import DateTimeField from 'react-bootstrap-datetimepicker'
 import moment from 'moment'
 import classNames from 'classnames'
 

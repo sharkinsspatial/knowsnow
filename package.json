@@ -10,6 +10,8 @@
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
       "<rootDir>/node_modules/skin-deep",
       "<rootDir>/node_modules/babel-polyfill",
       "<rootDir>/node_modules/grunt-aws"
@@ -38,10 +40,10 @@
     "moment": "^2.10.6",
     "react": "^0.14.2",
     "react-bootstrap": "^0.27.3",
+    "react-bootstrap-datetimepicker": "sharkinsspatial/react-bootstrap-datetimepicker",
     "react-dom": "^0.14.2",
     "react-router": "^1.0.0-rc1",
-    "react-router-bootstrap": "^0.19.2",
-    "sharkins-react-bootstrap-datetimepicker": "0.0.22"
+    "react-router-bootstrap": "^0.19.2"
   },
   "devDependencies": {
     "babel-jest": "^5.3.0",
