@@ -43,6 +43,7 @@ class CreateReportInputs extends React.Component {
             literal[key] = this.refs[key].getValue()
         }
         literal.route = this.props.Reports.createdReportRoute
+        literal.distance = this.props.Reports.reportRouteDistance
         return literal
     }
 
@@ -90,12 +91,6 @@ class CreateReportInputs extends React.Component {
                     defaultText='Please select a start time' mode='time'
                     onChange={this.handleDateChange} inputFormat='h:mm'
                     ref='startTime' format={this.storageFormat}/>
-            </Input>
-            <Input label='Finish Time'>
-                <DateTimeField dateTime={this.state.date}
-                    defaultText='Please select a finish time' mode='time'
-                    inputFormat='h:mm' ref='endTime'
-                    format={this.storageFormat}/>
             </Input>
             <Input type='textarea' label='Report' ref='narrative'
                 placeholder='Your report here'

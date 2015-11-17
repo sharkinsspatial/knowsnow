@@ -7,7 +7,7 @@ const ReportSource = {
         remote(state) {
             //var res
             return axios.get(
-                rootUrl + 'api/Reports?filter[order]=endTime' +
+                rootUrl + 'api/Reports?filter[order]=startTime' +
                     '%20DESC&filter[include][owner][identities]')
                     //.then(function (response) {
                         //res = response
