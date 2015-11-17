@@ -18,10 +18,16 @@ class ReportList extends React.Component {
                 <Panel header={dateDifference + ' by ' + report.displayName}
                     key={report.id} eventKey={report.id}>
                     <Panel>
-                    <h4><Label bsStyle='primary'>
-                        {report.skiType + ' - ' + distance}</Label></h4>
-                    <h4><Label bsStyle='success'>{report.glideWax}</Label></h4>
-                    <h4><Label bsStyle='danger'>{report.gripWax}</Label></h4>
+                    <h4 className={'headingPadding'}>
+                    <Label bsStyle='primary'>
+                        {report.skiType + ' - ' + distance}</Label>
+                    </h4>
+                    <h4 className={'headingPadding'}>
+                    <Label bsStyle='success'>{report.glideWax}</Label>
+                    </h4>
+                    <h4 className={'headingPadding'}>
+                    <Label bsStyle='danger'>{report.gripWax}</Label>
+                    </h4>
                         {report.narrative}
                     </Panel>
                 </Panel>
