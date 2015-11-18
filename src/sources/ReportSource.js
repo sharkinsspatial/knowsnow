@@ -8,7 +8,8 @@ const ReportSource = {
             //var res
             return axios.get(
                 rootUrl + 'api/Reports?filter[order]=startTime' +
-                    '%20DESC&filter[include][owner][identities]')
+                    '%20DESC&filter[include][owner][identities]' +
+                    '&filter[limit]=15')
                     //.then(function (response) {
                         //res = response
                     //})
