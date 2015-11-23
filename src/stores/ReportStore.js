@@ -33,7 +33,8 @@ class ReportStore {
             let moreRecent = moment(current.startTime).isAfter(accumulator.startTime) ?
                 current : accumulator
             //Setting lookup map here since we are iterating
-            current.displayName = current.owner.identities[0].profile.displayName
+            current.displayName = current.owner.identities.length > 0 ?
+                current.owner.identities[0].profile.displayName : current.owner.email
             this.reports.set(current.id, current)
             return moreRecent
         }, {id:0, startTime: moment('2010', 'YYYY')})

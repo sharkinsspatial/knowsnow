@@ -1,11 +1,10 @@
 import axios from 'axios'
 import AuthenticationActions from '../actions/AuthenticationActions'
-let rootUrl = 'apiUrl' 
+let rootUrl = 'apiUrl'
 
 const AuthenticationSource = {
     fetchUser: {
         remote(state) {
-            var res
             let url = rootUrl + 'api/Users/' + state.userId +
             '?filter[include][identities]&access_token=' + state.token
             return axios.get(url)
@@ -17,6 +16,19 @@ const AuthenticationSource = {
 
         success: AuthenticationActions.updateUser,
         error: AuthenticationActions.userFailed
+    },
+    fetchToken: {
+        remote(state) {
+            let url = rootUrl + 'api/Users/login'
+            return axios.post(url, state.credentials)
+        },
+
+        local(state) {
+            return state.token ? state.user : null
+        },
+
+        success: AuthenticationActions.updateToken,
+        error: AuthenticationActions.tokenFailed
     }
 }
 
