@@ -3,7 +3,8 @@ import alt from '../alt'
 class AuthenticationActions {
     constructor() {
         this.generateActions('login', 'updateUser', 'userFailed',
-                            'fetchToken', 'updateToken', 'tokenFailed')
+                            'fetchToken', 'updateToken', 'tokenFailed',
+                            'sendRegistration', 'register', 'registrationFailed')
     }
 }
 

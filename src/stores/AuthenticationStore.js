@@ -10,6 +10,9 @@ class AuthenticationStore {
         this.bindAction(AuthenticationActions.fetchToken, this.onFetchToken)
         this.bindAction(AuthenticationActions.updateUser, this.onUpdateUser)
         this.bindAction(AuthenticationActions.updateToken, this.onUpdateToken)
+        this.bindAction(AuthenticationActions.sendRegistration, this.onSendRegistration)
+        this.bindAction(AuthenticationActions.register, this.onRegister)
+        this.bindAction(AuthenticationActions.registrationFailed, this.onRegistrationFailed)
 
         this.exportPublicMethods({
             isLoggedIn: this.isLoggedIn
@@ -33,6 +36,20 @@ class AuthenticationStore {
     onFetchToken(credentials) {
         this.setState({ credentials: credentials })
         this.getInstance().fetchToken()
+    }
+
+    onSendRegistration(registration) {
+        this.setState({ registration: registration })
+        this.getInstance().sendRegistration()
+    }
+
+    onRegister(response) {
+        this.setState({ registered: true })
+    }
+
+    onRegistrationFailed(response) {
+        this.setState({ registrationError: true, registrationErrorMessage:
+            response.data.error.message})
     }
 
     isLoggedIn() {

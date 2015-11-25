@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import Input from 'react-bootstrap/lib/Input'
 import ButtonInput from 'react-bootstrap/lib/ButtonInput'
 import AuthenticationActions from '../actions/AuthenticationActions'
+import { Router, Route, Link } from 'react-router'
 
 class Login extends React.Component {
     constructor(props) {
@@ -49,6 +50,9 @@ class Login extends React.Component {
                     <i ref='btn' className={loginBtnClass}></i> Login</a>
                 </div>
                 <div className={textClass}>Or register for a new Know Snow account</div>
+                <div className='text-center'>
+                    <Link to={'/register'}>Register Here</Link>
+                </div>
             </div>
         )
     }

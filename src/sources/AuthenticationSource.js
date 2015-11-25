@@ -17,6 +17,7 @@ const AuthenticationSource = {
         success: AuthenticationActions.updateUser,
         error: AuthenticationActions.userFailed
     },
+
     fetchToken: {
         remote(state) {
             let url = rootUrl + 'api/Users/login'
@@ -29,6 +30,20 @@ const AuthenticationSource = {
 
         success: AuthenticationActions.updateToken,
         error: AuthenticationActions.tokenFailed
+    },
+
+    sendRegistration: {
+        remote(state) {
+            let url = rootUrl + 'api/Users/'
+            return axios.post(url, state.registration)
+        },
+
+        shouldFetch() {
+            return true
+        },
+
+        success: AuthenticationActions.register,
+        error: AuthenticationActions.registrationFailed
     }
 }
 
