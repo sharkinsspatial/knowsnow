@@ -21,6 +21,7 @@ import {LinkContainer} from 'react-router-bootstrap'
 import Login from './Login'
 import AuthenticationActions from '../actions/AuthenticationActions'
 import RegisterContainer from './RegisterContainer'
+import LoginContainer from './LoginContainer'
 
 
 class Application extends React.Component {
@@ -60,6 +61,7 @@ class Application extends React.Component {
         )
     }
 }
+
 function requireAuthorization(nextState, replaceState) {
     if(!AuthenticationStore.isLoggedIn()) {
         if (nextState.location.query.access_token) {
@@ -77,7 +79,7 @@ ReactDOM.render((
     <Router>
         <Route path='/' component={Application}>
             <IndexRoute component={ReportListContainer}/>
-            <Route path='login' component={Login}/>
+            <Route path='login' component={LoginContainer}/>
             <Route path='create' component={CreateReportContainer}
                 onEnter={requireAuthorization}/>
             <Route path='register' component={RegisterContainer}/>

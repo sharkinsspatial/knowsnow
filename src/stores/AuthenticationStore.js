@@ -13,6 +13,8 @@ class AuthenticationStore {
         this.bindAction(AuthenticationActions.sendRegistration, this.onSendRegistration)
         this.bindAction(AuthenticationActions.register, this.onRegister)
         this.bindAction(AuthenticationActions.registrationFailed, this.onRegistrationFailed)
+        this.bindAction(AuthenticationActions.tokenFailed, this.onLoginFailed)
+        this.bindAction(AuthenticationActions.userFailed, this.onLoginFailed)
 
         this.exportPublicMethods({
             isLoggedIn: this.isLoggedIn
@@ -20,7 +22,8 @@ class AuthenticationStore {
     }
 
     onUpdateUser(response) {
-        this.setState({ user: response.data })
+        this.setState({ user: response.data, loginError: false,
+            loginErrorMessage: null})
     }
 
     onUpdateToken(response) {
@@ -44,12 +47,18 @@ class AuthenticationStore {
     }
 
     onRegister(response) {
-        this.setState({ registered: true })
+        this.setState({ registered: true, registrationError: false,
+            registrationErrorMessage: null })
     }
 
     onRegistrationFailed(response) {
         this.setState({ registrationError: true, registrationErrorMessage:
-            response.data.error.message})
+            response.data.error.message })
+    }
+
+    onLoginFailed(response) {
+        this.setState({ loginError: true, loginErrorMessage:
+                      response.data.error.message })
     }
 
     isLoggedIn() {

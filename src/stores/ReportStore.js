@@ -34,7 +34,7 @@ class ReportStore {
                 current : accumulator
             //Setting lookup map here since we are iterating
             current.displayName = current.owner.identities.length > 0 ?
-                current.owner.identities[0].profile.displayName : current.owner.email
+                current.owner.identities[0].profile.displayName : current.owner.username
             this.reports.set(current.id, current)
             return moreRecent
         }, {id:0, startTime: moment('2010', 'YYYY')})
@@ -44,8 +44,9 @@ class ReportStore {
     addReport(report) {
         this.reports.set(report.id, report)
         let authenticationStoreState = AuthenticationStore.getState()
-        report.displayName = authenticationStoreState.user.identities[0]
-            .profile.displayName
+        report.displayName = authenticationStoreState.user.identities.length > 0 ?
+                authenticationStoreState.user.identities[0].profile.displayName :
+                    authenticationStoreState.user.username
         //State is immutable so we need a new array here
         let newArray = this.state.reports.slice()
         newArray.unshift(report)

@@ -4,6 +4,7 @@ import Input from 'react-bootstrap/lib/Input'
 import ButtonInput from 'react-bootstrap/lib/ButtonInput'
 import Well from 'react-bootstrap/lib/Well'
 import Collapse from 'react-bootstrap/lib/Collapse'
+import Alert from 'react-bootstrap/lib/Alert'
 
 class Register extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class Register extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.registered) {
+        if (nextProps.registered || nextProps.registrationError) {
             this.setState({ loading: false })
         }
     }
@@ -52,9 +53,9 @@ class Register extends React.Component {
                     </Well>
                 </Collapse>
                 <Collapse in={this.props.registrationError}>
-                    <Well>
-                    {this.props.registrationErrorMessage}
-                    </Well>
+                    <Alert bsStyle='danger'>
+                        <h5>{this.props.registrationErrorMessage}</h5>
+                    </Alert>
                 </Collapse>
             </div>
         )

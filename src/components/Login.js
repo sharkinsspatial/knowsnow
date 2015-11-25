@@ -2,13 +2,25 @@ import React from 'react'
 import classNames from 'classnames'
 import Input from 'react-bootstrap/lib/Input'
 import ButtonInput from 'react-bootstrap/lib/ButtonInput'
-import AuthenticationActions from '../actions/AuthenticationActions'
 import { Router, Route, Link } from 'react-router'
+import Collapse from 'react-bootstrap/lib/Collapse'
+import Alert from 'react-bootstrap/lib/Alert'
 
 class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = { facebookLoading: false, loginLoading: false }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user) {
+            setTimeout(() => {
+                this.props.history.pushState(null, '/create', null)
+            }, 0)
+        }
+        if (nextProps.loginError) {
+            this.setState({ loginLoading: false })
+        }
     }
 
     render() {
@@ -53,6 +65,11 @@ class Login extends React.Component {
                 <div className='text-center'>
                     <Link to={'/register'}>Register Here</Link>
                 </div>
+                <Collapse in={this.props.loginError}>
+                    <Alert bsStyle='danger'>
+                        <h5>{this.props.loginErrorMessage}</h5>
+                    </Alert>
+                </Collapse>
             </div>
         )
     }
@@ -65,7 +82,7 @@ class Login extends React.Component {
         this.setState({ loginLoading: true })
         let credentials = { 'email': this.refs.loginEmail.getValue(),
                 'password': this.refs.loginPassword.getValue() }
-        AuthenticationActions.fetchToken(credentials)
+        this.props.fetchToken(credentials)
     }
 }
 
