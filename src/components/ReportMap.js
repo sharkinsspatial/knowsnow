@@ -31,7 +31,10 @@ class ReportMap extends React.Component {
             zoom: 14
         })
         this.baseLayer.addTo(this.map)
-        this.reportRoute = L.geoJson().addTo(this.map)
+        this.reportRoute = L.geoJson(null, {style: function (feature) {
+                return {color: 'yellow'}
+            }
+        }).addTo(this.map)
         this.reportRouteLayerGroup = L.layerGroup().addTo(this.map)
         this.routeLayerGroup = L.layerGroup().addTo(this.map)
 
@@ -227,7 +230,7 @@ class ReportMap extends React.Component {
         this.routeLineCoords = []
         this.lastRouteSegment = []
 
-        this.routeLine = L.polyline([], { color: 'blue'})
+        this.routeLine = L.polyline([], { color: 'yellow'})
             .addTo(this.routeLayerGroup)
 
         if (this.startMarker) {
