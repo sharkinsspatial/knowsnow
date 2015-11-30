@@ -22,6 +22,7 @@ import Login from './Login'
 import AuthenticationActions from '../actions/AuthenticationActions'
 import RegisterContainer from './RegisterContainer'
 import LoginContainer from './LoginContainer'
+import Legend from './Legend'
 
 
 class Application extends React.Component {
@@ -39,6 +40,9 @@ class Application extends React.Component {
                     </LinkContainer>
                     <LinkContainer to='/#'>
                         <NavItem eventKey={2}>Reports</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to='/legend'>
+                        <NavItem eventKey={3}>Legend</NavItem>
                     </LinkContainer>
                 </Nav>
                 </Navbar>
@@ -83,6 +87,7 @@ ReactDOM.render((
             <Route path='create' component={CreateReportContainer}
                 onEnter={requireAuthorization}/>
             <Route path='register' component={RegisterContainer}/>
+            <Route path='legend' component={Legend}/>
         </Route>
     </Router>
 ), document.getElementById('content'))
