@@ -23,18 +23,23 @@ class Legend extends React.Component {
                 </svg>
                 <h4>Easy</h4>
                 <svg width='100%' height='5%' viewBox='0 0 100 1'>
-                    <line id='shared' x1='0' y1='0' x2='100' y2='0'
+                    <line id='easy' x1='0' y1='0' x2='100' y2='0'
                         stroke='#68A926' fill='none'/>
+                    <circle cx='50' cy='0' r='4' fill='black'/>
                 </svg>
                 <h4>Intermediate</h4>
                 <svg width='100%' height='5%' viewBox='0 0 100 1'>
-                    <line id='shared' x1='0' y1='0' x2='100' y2='0'
+                    <line id='intermediate' x1='0' y1='0' x2='100' y2='0'
                         stroke='#00689E' fill='none'/>
+                    <rect x='47.5' y='-2.5' height='5' width='5' stroke='black'
+                        fill='black'/>
                 </svg>
                 <h4>Advanced</h4>
                 <svg width='100%' height='5%' viewBox='0 0 100 1'>
-                    <line id='shared' x1='0' y1='0' x2='100' y2='0'
+                    <line id='advanced' x1='0' y1='0' x2='100' y2='0'
                         stroke='#E94D38' fill='none'/>
+                    <rect x='47.5' y='-2.5' height='5' width='5' stroke='black'
+                        fill='black' transform='rotate(45, 50, 0)'/>
                 </svg>
             </div>
         )
