@@ -7,7 +7,8 @@ class ReportActions {
              'setActiveReport',
              'createReportRoute',
              'setReportRouteDistance',
-             'setCreateMode')
+             'setCreateMode',
+             'updatePhotoContainer', 'createPhoto', 'updatePhotos', 'photoFailed')
     }
 }
 

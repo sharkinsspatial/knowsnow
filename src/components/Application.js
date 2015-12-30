@@ -23,6 +23,7 @@ import AuthenticationActions from '../actions/AuthenticationActions'
 import RegisterContainer from './RegisterContainer'
 import LoginContainer from './LoginContainer'
 import Legend from './Legend'
+import CreatePhotoContainer from './CreatePhotoContainer'
 
 
 class Application extends React.Component {
@@ -85,6 +86,8 @@ ReactDOM.render((
             <IndexRoute component={ReportListContainer}/>
             <Route path='login' component={LoginContainer}/>
             <Route path='create' component={CreateReportContainer}
+                onEnter={requireAuthorization}/>
+            <Route path='upload' component={CreatePhotoContainer}
                 onEnter={requireAuthorization}/>
             <Route path='register' component={RegisterContainer}/>
             <Route path='legend' component={Legend}/>

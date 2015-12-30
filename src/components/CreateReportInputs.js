@@ -53,7 +53,7 @@ class CreateReportInputs extends React.Component {
         if (this.props.Reports.createdReportRoute &&
             !nextProps.Reports.createdReportRoute) {
             setTimeout(() => {
-                this.props.history.pushState(null, '/', null)
+                this.props.history.pushState(null, '/upload', null)
             }, 0)
         }
     }

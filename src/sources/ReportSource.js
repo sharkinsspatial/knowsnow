@@ -5,26 +5,12 @@ const rootUrl = 'apiUrl'
 const ReportSource = {
     fetchReports: {
         remote(state) {
-            //var res
-            return axios.get(
-                rootUrl + 'api/Reports?filter[order]=startTime' +
-                    '%20DESC&filter[include][owner][identities]' +
-                    '&filter[limit]=15')
-                    //.then(function (response) {
-                        //res = response
-                    //})
-            // Add delay for load animation testing
-            //return new Promise(function (resolve, reject) {
-                //setTimeout(function () {
-                    //// change this to `false` to see the error action being handled.
-                    //if (true) {
-                        //resolve(res)
-                    //} else {
-                        //reject('Things have broken')
-                    //}
-                //}, 2000)
-            //})
+            let url = `${rootUrl}api/Reports?filter[order]=startTime` +
+                    `%20DESC&filter[include]=imageMetadatas&` +
+                    `filter[include][owner][identities]&filter[limit]=15`
+            return axios.get(url)
         },
+
         local(state) {
             return state.reports ? state.reports : null
         },
@@ -34,26 +20,43 @@ const ReportSource = {
         error: ReportActions.reportsFailed
     },
 
+    createPhotoContainer: {
+        remote(state) {
+            let authenticationStoreState = AuthenticationStore.getState()
+            let url = `${rootUrl}api/CloudStoreImages`
+            let data = { name: state.activeReport }
+            return axios.post(url, data)
+        },
+
+        shouldFetch() {
+            return true
+        },
+
+        success: ReportActions.updatePhotoContainer,
+        error: ReportActions.photoContainerFailed
+    },
+
+    createPhoto: {
+        remote(state) {
+            let authenticationStoreState = AuthenticationStore.getState()
+            let url = `${rootUrl}api/CloudStoreImages/${state.activeReport}/upload`
+            return axios.post(url, state.photo)
+        },
+
+        shouldFetch() {
+            return true
+        },
+
+        success: ReportActions.updatePhotos,
+        error: ReportActions.photoFailed
+    },
+
     createReport: {
         remote(state) {
-            var res
             let authenticationStoreState = AuthenticationStore.getState()
-            let url = rootUrl + 'api/Reports?access_token=' +
-                authenticationStoreState.token
-            axios.post(url, state.createdReport)
-                .then(function (response) {
-                    res = response
-            })
-            return new Promise(function (resolve, reject) {
-                setTimeout(function () {
-                    // change this to `false` to see the error action being handled.
-                    if (true) {
-                        resolve(res)
-                    } else {
-                        reject('Things have broken')
-                    }
-                }, 2000)
-            })
+            let url = `${rootUrl}api/Reports?access_token=` +
+                `${authenticationStoreState.token}`
+            return axios.post(url, state.createdReport)
         },
 
         shouldFetch() {

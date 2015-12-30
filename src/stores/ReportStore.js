@@ -18,6 +18,9 @@ class ReportStore {
         this.bindAction(ReportActions.updateReport, this.onUpdateReport)
         this.bindAction(ReportActions.setReportRouteDistance, this.onSetDistance)
         this.bindAction(ReportActions.setCreateMode, this.onSetCreateMode)
+        this.bindAction(ReportActions.createPhoto, this.onCreatePhoto)
+        this.bindAction(ReportActions.updatePhotos, this.onUpdatePhotos)
+        this.bindAction(ReportActions.updatePhotoContainer, this.onUpdatePhotoContainer)
 
         this.exportPublicMethods({
             getReports: this.getReports
@@ -87,13 +90,28 @@ class ReportStore {
         //}
     }
 
+    onCreatePhoto(photo) {
+        this.setState({ photo: photo })
+        this.getInstance().createPhotoContainer()
+    }
+
     onUpdateReport(response) {
         this.addReport(response.data)
+    }
+
+    onUpdatePhotos(response) {
+        let test = response.data
+        console.log(test)
+    }
+
+    onUpdatePhotoContainer() {
+        this.getInstance().createPhoto()
     }
 
     onSetCreateMode(mode) {
         this.setState({ createMode: mode })
     }
+
     getReports() {
         if (!this.isLoading()) {
             this.fetchReports()
