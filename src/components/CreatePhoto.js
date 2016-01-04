@@ -1,6 +1,7 @@
 import React from 'react'
 import Input from 'react-bootstrap/lib/Input'
 import ButtonInput from 'react-bootstrap/lib/ButtonInput'
+import PhotoCarousel from './PhotoCarousel'
 
 class CreatePhoto extends React.Component {
     constructor(props) {
@@ -15,12 +16,15 @@ class CreatePhoto extends React.Component {
     }
 
     render() {
+        let carousel = <PhotoCarousel images={this.props.activeReportImages}/>
+
         return (
             <div>
                 <form encType="multipart/form-data">
                 <input type='file' label='Select Photo' name='fileUpload'
                     ref='fileUpload' onChange={this.onPhotoSelect}/>
                 </form>
+                {carousel}
             </div>
         )
     }

@@ -3,6 +3,8 @@ import Accordion from 'react-bootstrap/lib/Accordion'
 import Panel from 'react-bootstrap/lib/Panel'
 import Label from 'react-bootstrap/lib/Label'
 import moment from 'moment'
+import PhotoCarousel from './PhotoCarousel'
+
 
 class ReportList extends React.Component {
     constructor(props) {
@@ -18,10 +20,14 @@ class ReportList extends React.Component {
                 <h4 className={'headingPadding'}>
                     <Label bsStyle='success'>{report.glideWax}</Label>
                 </h4> : <div/>
+
             let grip = report.gripWax !== '' ?
                 <h4 className={'headingPadding'}>
                     <Label bsStyle='danger'>{report.gripWax}</Label>
                 </h4> : <div/>
+
+            let carousel = <PhotoCarousel images={report.imageMetadatas}/>
+
             return (
                 <Panel header={dateDifference + ' by ' + report.displayName}
                     key={report.id} eventKey={report.id}>
@@ -33,6 +39,7 @@ class ReportList extends React.Component {
                         {glide}
                         {grip}
                         {report.narrative}
+                        {carousel}
                     </Panel>
                 </Panel>
             )

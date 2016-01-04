@@ -20,22 +20,6 @@ const ReportSource = {
         error: ReportActions.reportsFailed
     },
 
-    createPhotoContainer: {
-        remote(state) {
-            let authenticationStoreState = AuthenticationStore.getState()
-            let url = `${rootUrl}api/CloudStoreImages`
-            let data = { name: state.activeReport }
-            return axios.post(url, data)
-        },
-
-        shouldFetch() {
-            return true
-        },
-
-        success: ReportActions.updatePhotoContainer,
-        error: ReportActions.photoContainerFailed
-    },
-
     createPhoto: {
         remote(state) {
             let authenticationStoreState = AuthenticationStore.getState()

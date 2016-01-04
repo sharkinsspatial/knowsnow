@@ -20,7 +20,6 @@ class ReportStore {
         this.bindAction(ReportActions.setCreateMode, this.onSetCreateMode)
         this.bindAction(ReportActions.createPhoto, this.onCreatePhoto)
         this.bindAction(ReportActions.updatePhotos, this.onUpdatePhotos)
-        this.bindAction(ReportActions.updatePhotoContainer, this.onUpdatePhotoContainer)
 
         this.exportPublicMethods({
             getReports: this.getReports
@@ -50,6 +49,7 @@ class ReportStore {
         report.displayName = authenticationStoreState.user.identities.length > 0 ?
                 authenticationStoreState.user.identities[0].profile.displayName :
                     authenticationStoreState.user.username
+        report.imageMetadatas = []
         //State is immutable so we need a new array here
         let newArray = this.state.reports.slice()
         newArray.unshift(report)
@@ -68,10 +68,15 @@ class ReportStore {
     onSetActiveReport(id) {
         let activeReport = this.reports.get(id)
         if (activeReport) {
-            this.setState({ activeReport: id, activeReportRoute: activeReport.route })
+            this.setState({ activeReport: id,
+                          activeReportRoute: activeReport.route,
+                          activeReportImages: activeReport.imageMetadatas
+            })
         }
         else {
-            this.setState({ activeReport: null, activeReportRoute: null })
+            this.setState({ activeReport: null, activeReportRoute: null,
+                            activeReportImages: []
+            })
         }
     }
 
@@ -92,7 +97,7 @@ class ReportStore {
 
     onCreatePhoto(photo) {
         this.setState({ photo: photo })
-        this.getInstance().createPhotoContainer()
+        this.getInstance().createPhoto()
     }
 
     onUpdateReport(response) {
@@ -100,12 +105,9 @@ class ReportStore {
     }
 
     onUpdatePhotos(response) {
-        let test = response.data
-        console.log(test)
-    }
-
-    onUpdatePhotoContainer() {
-        this.getInstance().createPhoto()
+        let activeReport = this.reports.get(response.data.imageMetadata.reportId)
+        activeReport.imageMetadatas.push(response.data.imageMetadata)
+        this.setState({ activeReportImages: activeReport.imageMetadatas })
     }
 
     onSetCreateMode(mode) {
