@@ -26,7 +26,11 @@ class ReportList extends React.Component {
                     <Label bsStyle='danger'>{report.gripWax}</Label>
                 </h4> : <div/>
 
-            let carousel = <PhotoCarousel images={report.imageMetadatas}/>
+            let narrative = <div className={'headingPadding'}>{report.narrative}</div>
+
+            let carousel = <PhotoCarousel images={report.imageMetadatas}
+                setActiveReportImage={this.props.setActiveReportImage}
+                activeImage={this.props.activeReportImage}/>
 
             return (
                 <Panel header={dateDifference + ' by ' + report.displayName}
@@ -38,7 +42,7 @@ class ReportList extends React.Component {
                     </h4>
                         {glide}
                         {grip}
-                        {report.narrative}
+                        {narrative}
                         {carousel}
                     </Panel>
                 </Panel>

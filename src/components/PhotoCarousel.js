@@ -8,6 +8,11 @@ class PhotoCarousel extends React.Component {
     }
 
     render() {
+            var activeIndex
+            activeIndex = this.props.images.findIndex((image, index) => {
+                return image.id === this.props.activeImage
+            })
+            activeIndex = activeIndex === -1 ? 0 : activeIndex
             let carousel = <div/>
             if (this.props.images.length > 0) {
                 let carouselItems = this.props.images.map(image => {
@@ -21,6 +26,7 @@ class PhotoCarousel extends React.Component {
                     )
                 })
                 carousel = <Carousel interval={5000000}
+                            activeIndex={activeIndex}
                             onSelect={this.onCarouselSelect}
                             >{carouselItems}</Carousel>
             }
@@ -29,7 +35,7 @@ class PhotoCarousel extends React.Component {
 
     onCarouselSelect = (index) => {
         let id = this.props.images[index].id
-        console.log(id)
+        this.props.setActiveReportImage(id)
     }
 }
 

@@ -6,7 +6,7 @@ import AuthenticationStore from './AuthenticationStore'
 
 class ReportStore {
     constructor() {
-        this.state = { createMode: false }
+        this.state = { createMode: false, activeReportImages: [] }
         this.reports = new Map()
         this.reportRoute = {}
         this.registerAsync(ReportSource)
@@ -20,6 +20,7 @@ class ReportStore {
         this.bindAction(ReportActions.setCreateMode, this.onSetCreateMode)
         this.bindAction(ReportActions.createPhoto, this.onCreatePhoto)
         this.bindAction(ReportActions.updatePhotos, this.onUpdatePhotos)
+        this.bindAction(ReportActions.setActiveReportImage, this.onSetActiveReportImage)
 
         this.exportPublicMethods({
             getReports: this.getReports
@@ -62,7 +63,8 @@ class ReportStore {
         let mostRecent = this.loadReports(response.data)
         let activeReport = this.reports.get(mostRecent.id)
         this.setState({ reports: response.data, loading: false, activeReport:
-            mostRecent.id, activeReportRoute: activeReport.route })
+            mostRecent.id, activeReportRoute: activeReport.route,
+            activeReportImages: activeReport.imageMetadatas })
     }
 
     onSetActiveReport(id) {
@@ -106,8 +108,15 @@ class ReportStore {
 
     onUpdatePhotos(response) {
         let activeReport = this.reports.get(response.data.imageMetadata.reportId)
-        activeReport.imageMetadatas.push(response.data.imageMetadata)
+        //State is immutable so we need a new array here
+        let newArray = activeReport.imageMetadatas.slice()
+        newArray.push(response.data.imageMetadata)
+        activeReport.imageMetadatas = newArray
         this.setState({ activeReportImages: activeReport.imageMetadatas })
+    }
+
+    onSetActiveReportImage(id) {
+        this.setState({ activeReportImage: id })
     }
 
     onSetCreateMode(mode) {

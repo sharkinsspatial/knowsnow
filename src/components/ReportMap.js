@@ -37,6 +37,7 @@ class ReportMap extends React.Component {
         }).addTo(this.map)
         this.reportRouteLayerGroup = L.layerGroup().addTo(this.map)
         this.routeLayerGroup = L.layerGroup().addTo(this.map)
+        this.photoLayerGroup = L.layerGroup().addTo(this.map)
 
         this.routeLineStyle = { color: 'red', opacity: 0.5, weight: 5 }
         this.startIcon = L.AwesomeMarkers.icon({
@@ -54,6 +55,10 @@ class ReportMap extends React.Component {
         this.finalizedIcon = L.AwesomeMarkers.icon({
             icon: 'stop',
             markerColor: 'red'
+        })
+        this.photoIcon = L.AwesomeMarkers.icon({
+            icon: 'camera',
+            markerColor: 'orange'
         })
         this.initializeRoutingControl()
         this.shouldPopup = false
@@ -206,6 +211,45 @@ class ReportMap extends React.Component {
             !nextProps.Reports.createdReportRoute) {
                 this.routeLayerGroup.clearLayers()
         }
+        if (nextProps.Reports.activeReportImages !==
+                       this.props.Reports.activeReportImages) {
+                this.photoLayerGroup.clearLayers()
+                this.addPhotoMarkers(nextProps.Reports.activeReportImages)
+        }
+        if (nextProps.Reports.activeReportImage !==
+            this.props.Reports.activeReportImage) {
+            this.openPhotoPopup(nextProps.Reports.activeReportImage)
+        }
+    }
+
+    addPhotoMarkers (images) {
+        images.forEach((image) => {
+            if (image.latitude && image.longitude) {
+                let img = `<img src="https://s3.amazonaws.com/knowsnowphotos/` +
+                        `${image.reportId}/${image.popupName}"/>`
+                let popup = new L.popup({ minWidth: 250 }).setContent(img)
+                let photoMarker = new L.marker(L.latLng(image.latitude,
+                                                        image.longitude),
+                                    {icon: this.photoIcon}).bindPopup(popup)
+                photoMarker.id = image.id
+                photoMarker.on('click', (event) => {
+                    let id = event.target.id
+                    this.props.ReportActions.setActiveReportImage(id)
+                })
+                this.photoLayerGroup.addLayer(photoMarker)
+            }
+        })
+    }
+
+    openPhotoPopup (id) {
+        this.photoLayerGroup.eachLayer((marker) => {
+            if (marker.id === id) {
+                marker.openPopup()
+            }
+            else {
+                marker.closePopup()
+            }
+        })
     }
 
     addReportRoute (route) {

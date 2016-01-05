@@ -8,7 +8,8 @@ class ReportActions {
              'createReportRoute',
              'setReportRouteDistance',
              'setCreateMode',
-             'createPhoto', 'updatePhotos', 'photoFailed')
+             'createPhoto', 'updatePhotos', 'photoFailed',
+             'setActiveReportImage')
     }
 }
 
