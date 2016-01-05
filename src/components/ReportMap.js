@@ -227,14 +227,14 @@ class ReportMap extends React.Component {
             if (image.latitude && image.longitude) {
                 let img = `<img src="https://s3.amazonaws.com/knowsnowphotos/` +
                         `${image.reportId}/${image.popupName}"/>`
-                let popup = new L.popup({ minWidth: 250 }).setContent(img)
+                let popup = new L.popup({ minWidth: 125 }).setContent(img)
                 let photoMarker = new L.marker(L.latLng(image.latitude,
                                                         image.longitude),
                                     {icon: this.photoIcon}).bindPopup(popup)
                 photoMarker.id = image.id
                 photoMarker.on('click', (event) => {
                     let id = event.target.id
-                    this.props.ReportActions.setActiveReportImage(id)
+                    this.props.setActiveReportImage(id)
                 })
                 this.photoLayerGroup.addLayer(photoMarker)
             }

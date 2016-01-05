@@ -4,15 +4,17 @@ import AltContainer from 'alt-container'
 import ReportStore from '../stores/ReportStore'
 import ReportActions from '../actions/ReportActions'
 import CreatePhoto from './CreatePhoto'
+import {History} from 'react-router'
 
-class CreatePhotoContainer extends React.Component {
+var CreatePhotoContainer = React.createClass({
+    mixins: [History],
     render() {
         return (
             <AltContainer store={ReportStore} actions={ReportActions}>
-                <CreatePhoto/>
+                <CreatePhoto history={this.context.history}/>
             </AltContainer>
         )
     }
-}
+})
 
 export default CreatePhotoContainer

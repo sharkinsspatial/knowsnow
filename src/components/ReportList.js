@@ -29,7 +29,7 @@ class ReportList extends React.Component {
             let narrative = <div className={'headingPadding'}>{report.narrative}</div>
 
             let carousel = <PhotoCarousel images={report.imageMetadatas}
-                setActiveReportImage={this.props.setActiveReportImage}
+                setActiveImage={this.props.setActiveReportImage}
                 activeImage={this.props.activeReportImage}/>
 
             return (

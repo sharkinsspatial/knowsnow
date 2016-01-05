@@ -112,7 +112,9 @@ class ReportStore {
         let newArray = activeReport.imageMetadatas.slice()
         newArray.push(response.data.imageMetadata)
         activeReport.imageMetadatas = newArray
-        this.setState({ activeReportImages: activeReport.imageMetadatas })
+        this.setState({ activeReportImages: activeReport.imageMetadatas,
+                        activeReportImage: response.data.imageMetadata.id
+        })
     }
 
     onSetActiveReportImage(id) {

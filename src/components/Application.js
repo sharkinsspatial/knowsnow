@@ -57,7 +57,7 @@ class Application extends React.Component {
                 <Col md={8}>
                     <AltContainer stores={{Reports: ReportStore,
                         ParkingLots: ParkingLotStore}}
-                        actions={{ReportActions: ReportActions}}>
+                        actions={ReportActions}>
                     <ReportMap/>
                     </AltContainer>
                 </Col>

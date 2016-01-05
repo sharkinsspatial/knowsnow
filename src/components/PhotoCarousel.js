@@ -35,7 +35,7 @@ class PhotoCarousel extends React.Component {
 
     onCarouselSelect = (index) => {
         let id = this.props.images[index].id
-        this.props.setActiveReportImage(id)
+        this.props.setActiveImage(id)
     }
 }
 
