@@ -56,7 +56,7 @@ class ReportStore {
         newArray.unshift(report)
         this.setState({ reports: newArray, createdReportRoute: null,
             activeReport: report.id, activeReportRoute: report.route,
-            createMode: false})
+            createMode: false, activeReportImages: report.imageMetadatas })
     }
 
     onUpdateReports(response) {
