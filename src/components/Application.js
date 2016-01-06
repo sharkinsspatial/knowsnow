@@ -24,6 +24,7 @@ import RegisterContainer from './RegisterContainer'
 import LoginContainer from './LoginContainer'
 import Legend from './Legend'
 import CreatePhotoContainer from './CreatePhotoContainer'
+import NavBrand from 'react-bootstrap/lib/NavBrand'
 
 
 class Application extends React.Component {
@@ -35,6 +36,9 @@ class Application extends React.Component {
         return (
             <div>
                 <Navbar fluid fixedTop toggleNavKey={0}>
+                <NavBrand>
+                <img src='/css/logo-white.png'/>
+                </NavBrand>
                 <Nav right eventKey={0}>
                     <LinkContainer to='/create'>
                         <NavItem eventKey={1}>Create Report</NavItem>
