@@ -25,6 +25,7 @@ import LoginContainer from './LoginContainer'
 import Legend from './Legend'
 import CreatePhotoContainer from './CreatePhotoContainer'
 import NavBrand from 'react-bootstrap/lib/NavBrand'
+import Help from './Help'
 
 
 class Application extends React.Component {
@@ -48,6 +49,9 @@ class Application extends React.Component {
                     </LinkContainer>
                     <LinkContainer to='/legend'>
                         <NavItem eventKey={3}>Legend</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to='/help'>
+                        <NavItem eventKey={4}>Help</NavItem>
                     </LinkContainer>
                 </Nav>
                 </Navbar>
@@ -96,6 +100,7 @@ ReactDOM.render((
                 onEnter={requireAuthorization}/>
             <Route path='register' component={RegisterContainer}/>
             <Route path='legend' component={Legend}/>
+            <Route path='help' component={Help}/>
         </Route>
     </Router>
 ), document.getElementById('content'))
