@@ -31,7 +31,7 @@ class Register extends React.Component {
         return (
             <div>
                 <div className={textClass}>
-                    <div>Register For A New Know Snow Account</div>
+                    <div>Register For A Gatineau XC Account</div>
                 </div>
                 <Input type='text' label='Email' ref='email'
                     onChange={this.handleChange}/>

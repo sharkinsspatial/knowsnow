@@ -33,7 +33,7 @@ class ReportList extends React.Component {
                 activeImage={this.props.activeReportImage}/>
 
             return (
-                <Panel header={dateDifference + ' by ' + report.displayName}
+                <Panel header={dateDifference + ' by ' + report.displayName + ' - ' + report.parkingLot}
                     key={report.id} eventKey={report.id}>
                     <Panel>
                     <h4 className={'headingPadding'}>

@@ -68,7 +68,7 @@ module.exports = function(grunt) {
             options: {
                 accessKeyId: '<%= aws.key %>',
                 secretAccessKey: '<%= aws.secret %>',
-                bucket: 'knowsnow',
+                bucket: 'gatineauxc.ca',
                 access: 'public-read',
                 header: {
                     // Two Year cache policy (1000 * 60 * 60 * 24 * 730)

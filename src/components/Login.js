@@ -52,7 +52,7 @@ class Login extends React.Component {
             </div>
                 <div className={textClass}>
                 <div>Don't use Facebook ?</div>
-                <div>Login with your Know Snow account</div>
+                <div>Login with your Gatineau XC account</div>
                 </div>
                 <Input type='text' label='Email' ref='loginEmail'/>
                 <Input type='text' label='Password' ref='loginPassword'/>
@@ -61,7 +61,7 @@ class Login extends React.Component {
                         onClick={this.handleLoginClick}>
                     <i ref='btn' className={loginBtnClass}></i> Login</a>
                 </div>
-                <div className={textClass}>Or register for a new Know Snow account</div>
+                <div className={textClass}>Or register for a new Gatineau XC account</div>
                 <div className='text-center'>
                     <Link to={'/register'}>Register Here</Link>
                 </div>

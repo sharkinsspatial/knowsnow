@@ -44,6 +44,7 @@ class CreateReportInputs extends React.Component {
         }
         literal.route = this.props.Reports.createdReportRoute
         literal.distance = this.props.Reports.reportRouteDistance
+        literal.parkingLot = this.props.ParkingLots.activeParkingLot.properties.name
         return literal
     }
 
