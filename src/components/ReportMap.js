@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import ReactDOMServer from 'react-dom/server'
 import L from 'leaflet'
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
-import MapBoxToken from '../../Tokens'
 import 'leaflet-routing-machine'
 import 'lrm-mapbox'
 import 'drmonty-leaflet-awesome-markers'
@@ -22,7 +21,7 @@ class ReportMap extends React.Component {
                 attribution: attribution,
                 subdomains: subdomains,
                 mapId: 'sharkins.69e17c44',
-                token: MapBoxToken,
+                token: 'mapboxKey',
             }
         )
         let node = ReactDOM.findDOMNode(this)
@@ -68,7 +67,7 @@ class ReportMap extends React.Component {
     initializeRoutingControl () {
         let options = { profile: 'mapbox.walking' }
         this.routingControl = L.Routing.control({
-            router: new L.Routing.Mapbox(MapBoxToken, options),
+            router: new L.Routing.Mapbox('mapboxKey', options),
            show: false,
             waypointMode: 'snap',
             fitSelectedRoutes: false,
