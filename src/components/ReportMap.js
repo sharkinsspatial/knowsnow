@@ -5,6 +5,7 @@ import L from 'leaflet'
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 import MapBoxToken from '../../Tokens'
 import 'leaflet-routing-machine'
+
 import 'drmonty-leaflet-awesome-markers'
 import RouteMarkerPopup from './RouteMarkerPopup'
 import Classnames from 'classnames'
