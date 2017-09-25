@@ -5,7 +5,6 @@ import L from 'leaflet'
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 import MapBoxToken from '../../Tokens'
 import 'leaflet-routing-machine'
-import 'lrm-mapbox'
 import 'drmonty-leaflet-awesome-markers'
 import RouteMarkerPopup from './RouteMarkerPopup'
 import Classnames from 'classnames'
@@ -66,9 +65,9 @@ class ReportMap extends React.Component {
     }
 
     initializeRoutingControl () {
-        let options = { profile: 'mapbox.walking' }
+        let options = { profile: 'mapbox/walking' }
         this.routingControl = L.Routing.control({
-            router: new L.Routing.Mapbox(MapBoxToken, options),
+            router: L.Routing.mapbox(MapBoxToken, options),
            show: false,
             waypointMode: 'snap',
             fitSelectedRoutes: false,
