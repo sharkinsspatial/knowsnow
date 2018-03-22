@@ -18,13 +18,11 @@ Newer versions of OSX may have file handle limitations which prevent the browser
 
 The application requires an instance of the [knowsnowapi](https://github.com/sharkinsspatial/knowsnowapi) running in the background for local testing.  These are referenced in the <code>dev</code> section of the <code>replace</code> task in the <code>Gruntfile.js</code>.
 
+The application requires a file named `Tokens.js` in the root directory which exports the Mapbox token.
+
 To build the application for local testing run
 ````shell
 $ grunt dev
-````
-Run unit tests with
-````shell
-$ npm test
 ````
 To serve the application locally I use [serve](https://github.com/tj/serve). You can install it globally using
 ````shell
